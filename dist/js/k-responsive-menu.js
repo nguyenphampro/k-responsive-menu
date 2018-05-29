@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * Project: k-responsiv-menu is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support
  *  Author: Bao Nguyen
@@ -67,7 +69,6 @@
             $kMenu.slideToggle().toggleClass('hide-menu');
         });
 
-
         // Main function 
         return this.each(function () {
             // Function for Horizontal menu on mouseenter
@@ -111,8 +112,8 @@
                 }
             });
             //End of responsive menu function
-
         });
         //End of Main function
-    }
+    };
 })(jQuery);;
+//# sourceMappingURL=k-responsive-menu.js.map

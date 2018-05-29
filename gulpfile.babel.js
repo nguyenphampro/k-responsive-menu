@@ -74,8 +74,8 @@ gulp.task('k-task', function(cb) {
     runSequence(
         'concat',
         'copy',
-        // 'fonts',
-        // 'sass', // css, less, stylus 
+        'fonts',
+        'sass', // css, less, stylus 
         'jade', // hamber, ejs, pug 
         cb
     );
@@ -111,7 +111,7 @@ gulp.task('rebuild', function(cb) {
         'uglify',
         // 'htmlmin',
         // 'imagemin',
-        // 'csscomb',
+        'csscomb',
         // 'tobase64',
         // 'packer',
         // 'rev',
