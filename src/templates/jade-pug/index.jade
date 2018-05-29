@@ -1,0 +1,94 @@
+extends _layout/layout
+
+block variables
+  - var title = 'K-Resposive-Menu'
+  - var bodyclass = 'index'
+
+block css
+  link(rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css")
+  link(rel="stylesheet" type="text/css" href="./css/main.css")
+
+block body 
+  .container
+    h1.display-4(style="margin:2rem 0;") K-Resposive-Menu
+    hr 
+
+    nav
+      .menu-toggle
+        h3 Menu
+        button#menu-btn(type='button')
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      ul#demoMenu.k-responsive-menu(data-menu-style='horizontal')
+        li
+          a(href='') Item one  
+        li
+          a(href='') Item two 
+          ul
+            li
+              a(href='') sub Item one 
+            li
+              a(href='') sub Item two 
+            li
+              a(href='') sub Item Three 
+        li
+          a(href='') Item three 
+        li
+          a(href='') Item four 
+
+        
+    h3(style="margin:2rem 0;") HTML
+    pre.prettyprint.lang-html.
+      &lt;nav&gt;
+        &lt;div class=&quot;menu-toggle&quot;&gt;
+          &lt;h3&gt;Menu&lt;/h3&gt;
+          &lt;button type=&quot;button&quot; id=&quot;menu-btn&quot;&gt;
+            &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+            &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+            &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;ul id=&quot;demoMenu&quot; class=&quot;k-responsive-menu&quot; data-menu-style=&quot;horizontal&quot;&gt;
+          &lt;li&gt;&lt;a href=&quot;&quot;&gt;Item one  &lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;&quot;&gt;Item two &lt;/a&gt;
+            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;&quot;&gt;sub Item one &lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;&quot;&gt;sub Item two &lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;&quot;&gt;sub Item Three &lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;&quot;&gt;Item three &lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;&quot;&gt;Item four &lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+    
+
+    .alert.alert-info Change default style of the Menu (data-menu-style="") to 
+      code horizontal
+      | , 
+      code vertical
+      | , 
+      code accordion
+    h3(style="margin:2rem 0;") JS
+    
+    pre.prettyprint.lang-js.
+      $(document).ready(function() {
+        $('#demoMenu').kResponsiveMenu({
+          resizeWidth: '768', // Set the breakpoint same in Media query       
+          animationSpeed: 'fast', //slow, medium, fast
+          accoridonExpAll: false //Expands all the accordion menu on click
+        });
+      });
+
+    
+  script(src='https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js')
+  script.
+     $(document).ready(function() {
+        $('#demoMenu').kResponsiveMenu({
+          resizeWidth: '768', // Set the breakpoint same in Media query       
+          animationSpeed: 'fast', //slow, medium, fast
+          accoridonExpAll: false //Expands all the accordion menu on click
+        });
+      });

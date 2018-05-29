@@ -1,0 +1,21 @@
+{
+    "name": "k-responsive-menu",
+    "description": "k-responsive-menu is a lightweight jQuery plugin to create responsive multi-level navigation menus with multi device support",
+    "main": "",
+    "authors": [
+        "baonguyen"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/baonguyenyam/k-responsive-menu",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "^3.0.0",
+        "animate.css": "^3.5.2"
+    }
+}
