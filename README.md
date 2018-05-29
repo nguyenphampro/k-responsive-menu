@@ -2,7 +2,7 @@
 
 k-responsive-menu is a lightweight jQuery plugin to create responsive multi-level navigation menus with multi device support
 
-http://baonguyenyam.github.io/docs/k-responsive-menu/
+http://baonguyenyam.github.io/k-responsive-menu/
 
 ---
 
@@ -14,115 +14,59 @@ bower install --save k-responsive-menu
 ```
 ___
 
-#Run
-
-***Auto:***
-
-```js
-$(document).ready(function() {
-  $('.auto').kAnimation({
-    ClassName: 'animated fadeInUp',
-    Animation: [
-      'fadeIn',
-      'fadeOutUp',
-    ],
-    Delay: 1000,
-    Forever: true,
-    DelayForever: 3000
-  });
-});
-```
-***Click:***
-
-```js
-$(document).ready(function() {
-  $('.click').kAnimation({
-    ClassName: 'animated',
-    Animation: 'fadeInUp',
-    Type: 'Click',
-    Forever: true,
-    DelayForever: 100
-  });
-});
-```
-
-***Hover:***
-
-```js
-$(document).ready(function() {
-  $('.hover').kAnimation({
-    ClassName: 'animated',
-    Animation: 'fadeInUp',
-    Type: 'Hover',
-    Forever: true,
-    DelayForever: 100
-  });
-});
-```
-
-***Scroll:***
-
-```js
-$(document).ready(function() {
-  $(".scroll").kAnimation({
-    ClassName: 'animated',
-    Animation: 'fadeInUp',
-    Delay: 2000,
-    ScrollLoop: true,
-    Type: 'Scroll'
-  });
-});
-```
-
-***Event:***
-
-```js
-$(document).ready(function() {
-  $('.events').kAnimation({
-    ClassName: 'animated fadeInUp',
-    Animation: [
-      'fadeIn',
-      'fadeOutUp',
-    ],
-    Delay: 1000,
-    Forever: true,
-    DelayForever: 3000,
-    onComplete: function(){
-      $(this).html('Text changed');
-    },
-    onClick: function(){
-      alert('Clicked');
-    },
-    onChange: function(){
-      console.log('onChange');
-    },
-    onBegin: function(){
-      console.log('onBegin');
-    },
-    onHover: function(){
-      alert('onHover');
-    },
-    unHover: function(){
-      alert('unHover');
-    }
-  });
-});
-```
-
-###Via HTML Tag
-
-####HTML
+#Install
 
 ```html
-<p k-responsive-menu="animated fadeInUp" k-class="fadeIn, fadeOutUp" k-delay="1000" k-forever="true" k-delayforever="3000" k-type="Auto">Auto Animation </p>
+<link rel="stylesheet" type="text/css" href="bower_components/k-responsive-menu/dist/css/k-responsive-menu.css">
 ```
+
+```html
+<script src="bower_components/k-responsive-menu/dist/js/k-responsive-menu.js"></script>
+```
+
+***JS:***
+
 ```js
-$('[k-Animation]').kAnimation();
+$(document).ready(function() {
+  $('#demoMenu').kResponsiveMenu({
+    resizeWidth: '768', // Set the breakpoint same in Media query       
+    animationSpeed: 'fast', //slow, medium, fast
+    accoridonExpAll: false //Expands all the accordion menu on click
+  });
+});
 ```
+***HTML:***
+
+```html
+<nav>
+  <div class="menu-toggle">
+    <h3>Menu</h3>
+    <button type="button" id="menu-btn">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+
+  <ul id="demoMenu" class="k-responsive-menu" data-menu-style="horizontal">
+    <li><a href="">Item one  </a></li>
+    <li><a href="">Item two </a>
+      <ul>
+        <li><a href="">sub Item one </a></li>
+        <li><a href="">sub Item two </a></li>
+        <li><a href="">sub Item Three </a></li>
+      </ul>
+    </li>
+    <li><a href="">Item three </a></li>
+    <li><a href="">Item four </a></li>
+  </ul>
+</nav>
+```
+
 
 ## Licence
 
-Copyright &copy; 2016 Bao Nguyen
+Copyright &copy; 2018 Bao Nguyen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
