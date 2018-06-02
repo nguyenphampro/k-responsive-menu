@@ -1,5 +1,3 @@
-import { get } from "https";
-
 /*
  * Project: k-responsiv-menu is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support
  *  Author: Bao Nguyen
@@ -36,59 +34,86 @@ import { get } from "https";
             this.element = $(this.element)
 
             if (this.element.attr('k-responsive-menu')) {
+                // Khai báo bởi Attr
                 var $e = this.element,
                     $o = $e.attr('k-menu-resize') ? $e.attr('k-menu-resize') : this.options.resizeWidth,
                     $d = $e.attr('k-menu-type') ? $e.attr('k-menu-type').toLocaleLowerCase() : this.options.menuType.toLocaleLowerCase(),
+                    $i = $e.attr('k-menu-icon') ? $e.attr('k-menu-icon').toLocaleLowerCase() : this.options.menuIcon.toLocaleLowerCase(),
                     $sl = $e.attr('k-menu-speed') ? $e.attr('k-menu-speed').toLocaleLowerCase() : this.options.animationSpeed.toLocaleLowerCase();
             } else {
+                // Khai báo bởi JS
                 var $e = this.element,
                     $o = this.options.resizeWidth,
                     $d = this.options.menuType,
+                    $i = this.options.menuIcon,
                     $sl = this.options.animationSpeed
             }
+            // Add Class Default
+            $e.addClass('k-responsive-menu')
+            $e.addClass('k-menu-'+ $d)
 
             // DO MENU 
             var nguyenApp = {
                 resizeTimer: null,
                 doMenuType: function() {
-                    $e.addClass('k-menu-'+ $d)
                     // Loại menu
-                    if ($d === 'accordion') {
-                    } 
-                    else if ($d === 'vertical') {
-                    } else {
-                    }
+                    // Accordion   => return 1
+                    // Vertical    => return 2
+                    // Horizontal  => return 3
+                    return "accordion" === $d ? 1 : "vertical" === $d ? 2 : 3
                 },
                 doMenuSpeed: function() {
                     // Tốc độ chuyển đổi
-                    if (typeof ($sl) == 'number') {
-                    } else if (typeof ($sl) == 'string') {
-                    }
+                    // Number       => Return number 
+                    // Slow, Fast   => Return string
+                    return "number" == typeof $sl ? parseInt($sl) : "string" == typeof $sl ? $sl : void 0
                 },
-                doBuildMenu: function() {
+                doChangeMenu: function() {
                     // Kích thước sẽ thay đổi menu
-                    if (typeof ($o) == 'number') {
-                        nguyenApp.changeMenu(parseInt($o))
-                    } else if (typeof ($o) == 'string') {
-                        var newsize = 0;
-                        newsize = "xs" === $o ? 0 : "sm" === $o ? 576 : "md" === $o ? 768 : "lg" === $o ? 992 : "xl" === $o ? 1200 : 0;
-                        nguyenApp.changeMenu(parseInt(newsize))
+                    // Number                         => Return number 
+                    // 'xs', 'sm', 'md', 'lg', 'xl'   => Return number
+                    if ("number" == typeof $o) return parseInt($o);
+                    if ("string" == typeof $o) {
+                        var o;
+                        return o = "xs" === $o ? 0 : "sm" === $o ? 576 : "md" === $o ? 768 : "lg" === $o ? 992 : "xl" === $o ? 1200 : 0, parseInt(o)
                     }
                 }, 
-                changeMenu: function(u) {
-                    var getchange = 0;
-                    getchange != u && (getchange = u);
+                menuBar: function () {
+                    var __speed = this.doMenuSpeed()
+                    $i && 0 < $i.length && $(".k-menu-toggle").html($i);
+                    $('.k-menu-toggle').click(function () {
+                        var getFather = $(this).attr('k-toggle-for')
+                        $(getFather).slideToggle(__speed)
+                    })
+                },
+                doResponsiveMenu: function() {
+                    var getchange = 0,
+                    __type = this.doMenuType(),
+                    __change = this.doChangeMenu();
+                    getchange != __change && (getchange = __change);
+                    // Add or Remove Class on Screen
                     if ($(window).innerWidth() >= getchange) {
-                        console.log('changed')
+                        if (__type == 3) {
+                            this.makeHorizontalPC()
+                        }
                     } else {
-                        console.log('mobile')
+                        if (__type == 3) {
+                            this.makeHorizontalMobile()
+                        }
                     }
+                },
+                makeHorizontalPC: function () {
+                    $e.removeClass('k-active').removeAttr('style')
+                    $('.k-menu-bar').hide()
+                },
+                makeHorizontalMobile: function () {
+                    $e.addClass('k-active')
+                    $('.k-menu-bar').show()
                 }
             }
 
-            nguyenApp.doMenuType()
-            nguyenApp.doMenuSpeed()
-            nguyenApp.doBuildMenu()
+            nguyenApp.menuBar()
+            nguyenApp.doResponsiveMenu()
 
             plugin.element.on('click' + '.' + plugin._name, function () {
                 plugin.onClick.call(plugin)
@@ -100,10 +125,10 @@ import { get } from "https";
                 plugin.unHover.call(plugin)
             })
             $(window).resize(function () {
-                nguyenApp.doBuildMenu()
+                nguyenApp.doResponsiveMenu()
                 plugin.onResize.call(plugin)
                 clearTimeout(nguyenApp.resizeTimer);
-                nguyenApp.resizeTimer = setTimeout(() => {
+                nguyenApp.resizeTimer = setTimeout(function() {
                     plugin.onResizeEnd.call(plugin)
                 }, 200);
             })
@@ -201,6 +226,7 @@ import { get } from "https";
         animationSpeed: 'fast', // slow, fast, 200
         resizeWidth: 768,
         menuType: 'horizontal', // horizontal, vertical, accordion
+        menuIcon: null,
         onResize: null,
         onComplete: null,
         onChange: null,

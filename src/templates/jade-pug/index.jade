@@ -6,6 +6,7 @@ block variables
 
 block css
   link(rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css")
+  link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
   link(rel="stylesheet" type="text/css" href="./css/k-responsive-menu.css")
 
 block body 
@@ -14,11 +15,14 @@ block body
     hr 
 
     nav
-      ul#demoMenu(k-responsive-menu, k-menu-type='horizontal')
-        li
-          a(href='') Item one  
-        li
-          a(href='') Item two 
+      .k-menu-bar.bg-light
+        .k-logo LOGO
+        button.k-menu-toggle(k-toggle-for="#demoResAllInOneMenu") MENU
+      ul#demoResAllInOneMenu.nav
+        li.nav-item
+          a.nav-link(href='') Item one  
+        li.nav-item
+          a.nav-link(href='') Item two 
 
         
   //-   h3(style="margin:2rem 0;") HTML
@@ -33,7 +37,7 @@ block body
   //-         &lt;/button&gt;
   //-       &lt;/div&gt;
 
-  //-       &lt;ul id=&quot;demoMenu&quot; class=&quot;k-responsive-menu&quot; data-menu-style=&quot;horizontal&quot;&gt;
+  //-       &lt;ul id=&quot;demoResAllInOneMenu&quot; class=&quot;k-responsive-menu&quot; data-menu-style=&quot;horizontal&quot;&gt;
   //-         &lt;li&gt;&lt;a href=&quot;&quot;&gt;Item one  &lt;/a&gt;&lt;/li&gt;
   //-         &lt;li&gt;&lt;a href=&quot;&quot;&gt;Item two &lt;/a&gt;
   //-           &lt;ul&gt;
@@ -58,7 +62,7 @@ block body
     
   //-   pre.prettyprint.lang-js.
   //-     $(document).ready(function() {
-  //-       $('#demoMenu').kResponsiveMenu({
+  //-       $('#demoResAllInOneMenu').kResponsiveMenu({
   //-         resizeWidth: '768', // Set the breakpoint same in Media query       
   //-         animationSpeed: 'fast', //slow, medium, fast
   //-         accoridonExpAll: false //Expands all the accordion menu on click
@@ -66,13 +70,13 @@ block body
   //-     });
 
     
-  script(src='./js/k-responsive-menu.js')
   //- script(src='https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js')
   script.
      $(document).ready(function() {
-        $('#demoMenu').kResponsiveMenu({
-          animationSpeed: 300, // slow, fast, 200
-          resizeWidth: 'sm', // 'xs', 'sm', 'md', 'lg', 'xl', 480
+        $('#demoResAllInOneMenu').kResponsiveMenu({
+          animationSpeed: 'slow', // slow, fast, 200
+          resizeWidth: 'sm', // 'xs', 'sm', 'md', 'lg', 'xl', 480,
+          menuIcon: '<i class="fa fa-bars"></i>',
           onResizeEnd: function(){
             console.log(this)
           }
