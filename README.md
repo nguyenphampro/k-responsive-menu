@@ -1,4 +1,4 @@
-##Demo 
+# Demo 
 
 k-responsive-menu is a lightweight jQuery plugin to create responsive multi-level navigation menus with multi device support
 
@@ -6,7 +6,7 @@ http://baonguyenyam.github.io/k-responsive-menu/
 
 ---
 
-#Install
+# Install
 
 ***Via Bower:***
 ```
@@ -14,7 +14,7 @@ bower install --save k-responsive-menu
 ```
 ___
 
-#Install
+***Install:***
 
 ```html
 <link rel="stylesheet" type="text/css" href="bower_components/k-responsive-menu/dist/css/k-responsive-menu.css">
