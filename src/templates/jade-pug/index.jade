@@ -22,7 +22,11 @@ block body
     p 
       code k-responsive-menu 
       | is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support, By Bao Nguyen 
-      a(href="http://baonguyenyam.github.io/") http://baonguyenyam.github.io/ 
+      a(href="http://baonguyenyam.github.io/") http://baonguyenyam.github.io/.
+    p 
+      code k-responsive-menu 
+      | comes with 3 variants like horizontal, vertical and accordion menu. It gives complete responsive menu solution for any kind of websites or admin templates. The plugin has clean and well commented valid code, easy to Integrate and modify.
+
     hr
 
 
@@ -30,14 +34,41 @@ block body
       .col-sm-3 
         .list-group.p-0(style='position: -webkit-sticky; position: sticky; top: 1rem; ')
           .list-group-item.active Menu
+          a.list-group-item.list-group-item-action(href='#sec0') Features 
           a.list-group-item.list-group-item-action(href='#sec1') Gettings started 
           a.list-group-item.list-group-item-action(href='#sec2') Demo 
-          a.list-group-item.list-group-item-action(href='#sec3') APIs 
+          a.list-group-item.list-group-item-action(href='#sec3') APIs & Events
           a.list-group-item.list-group-item-action(href='https://github.com/baonguyenyam/k-responsive-menu') Github 
         
       .col-sm-9 
 
-        h4#sec1 Gettings started 
+        h2#sec0 Features
+        hr 
+        ul 
+          li Fully Responsive multi-level Menu
+          li Menu Styles: Horizontal, Vertical and Accordion menu
+          li Icon Support [Integrated with FontAwesome]
+          li Click / Hover Events
+          li Lightweight jQuery script
+          li Events
+          li Valid HTML5 and CSS3
+          li Bootstrap Compatible
+          li Easy to Integrate & customize
+          li Cross-browser support
+          li Clean and well commented code
+          li Help documentation
+        hr 
+        h5.h5 Compatible Browsers
+        p This menu has been tested and works with all the following browsers:
+
+        ul 
+          li Internet Explorer 7+
+          li Firefox 3+
+          li Chrome 4+
+          li Safari 4+
+          li Opera 10+
+
+        h2#sec1.mt-5 Gettings started 
         p.lead.text-danger This Plugins required Bootstrap Framework
         hr 
         h5.h5 Install via Bower
@@ -60,7 +91,7 @@ block body
         pre.p-3.prettyprint.lang-html.
           &lt;script src=&quot;./bower_components/dist/js/k-responsive-menu.js&quot;&gt;
 
-        h3.h3.mt-5#sec2 Demo
+        h2.mt-5#sec2 Demo
         hr 
 
         dl.row
@@ -99,7 +130,7 @@ block body
 
 
 
-        h4.mt-5#sec3 APIs 
+        h2.mt-5#sec3 APIs 
         hr 
         h5.h5.mt-4 JS Default value
         pre.p-3.prettyprint.lang-js.
@@ -208,31 +239,31 @@ block body
         .border.p-3.bg-light.mb-5
           dl.row
             dt.col-sm-3 
-              code k-responsive-menu
+              code [k-responsive-menu]
             dd.col-sm-9 true
           dl.row
             dt.col-sm-3 
-              code k-menu-resize
+              code [k-menu-resize]
             dd.col-sm-9 700 OR 'xs', 'sm', 'md', 'lg', 'xl'
           dl.row
             dt.col-sm-3 
-              code k-menu-icon
+              code [k-menu-icon]
             dd.col-sm-9 &lt;i class='fa fa-bars'&gt;&lt;/i&gt;
           dl.row
             dt.col-sm-3 
-              code k-menu-speed
+              code [k-menu-speed]
             dd.col-sm-9 'slow' OR 'fast', 500
           dl.row
             dt.col-sm-3 
-              code k-menu-width
+              code [k-menu-width]
             dd.col-sm-9 '250px' OR '100%', '40rem'
           dl.row
             dt.col-sm-3 
-              code k-menu-push
+              code [k-menu-push]
             dd.col-sm-9 'left' OR 'right'
           dl.row.mb-0
             dt.col-sm-3 
-              code k-menu-position
+              code [k-menu-position]
             dd.col-sm-9 'fixed' OR 'absolute'
 
 

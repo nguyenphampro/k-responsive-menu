@@ -1,12 +1,27 @@
-/*
- * Project: k-responsive-menu is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support
- *  Author: Bao Nguyen
- *  License: MIT
- *  Website: http://baonguyenyam.github.io
- *  Version: 1.0.0
- */
+;;/*
+$$$$$$$\   $$$$$$\   $$$$$$\  $$\   $$\  $$$$$$\  $$\   $$\ $$\     $$\ $$$$$$$$\ $$\   $$\
+$$  __$$\ $$  __$$\ $$  __$$\ $$$\  $$ |$$  __$$\ $$ |  $$ |\$$\   $$  |$$  _____|$$$\  $$ |
+$$ |  $$ |$$ /  $$ |$$ /  $$ |$$$$\ $$ |$$ /  \__|$$ |  $$ | \$$\ $$  / $$ |      $$$$\ $$ |
+$$$$$$$\ |$$$$$$$$ |$$ |  $$ |$$ $$\$$ |$$ |$$$$\ $$ |  $$ |  \$$$$  /  $$$$$\    $$ $$\$$ |
+$$  __$$\ $$  __$$ |$$ |  $$ |$$ \$$$$ |$$ |\_$$ |$$ |  $$ |   \$$  /   $$  __|   $$ \$$$$ |
+$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |\$$$ |$$ |  $$ |$$ |  $$ |    $$ |    $$ |      $$ |\$$$ |
+$$$$$$$  |$$ |  $$ | $$$$$$  |$$ | \$$ |\$$$$$$  |\$$$$$$  |    $$ |    $$$$$$$$\ $$ | \$$ |
+\_______/ \__|  \__| \______/ \__|  \__| \______/  \______/     \__|    \________|\__|  \__|
+Coding by: Bao Nguyen
+Tel: 0.96.96.89.89.3
+Email: baonguyenyam@gmail.com
+URL: fb.com/pham.nguyen.bao.nguyen,
+baonguyenyam.github.io
+baonguyenyam.blogspot.com
 
-;
+* Project: k-responsive-menu is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support
+*  Author: Bao Nguyen
+*  License: MIT
+*  Website: http://baonguyenyam.github.io
+*  Version: 1.0.0
+*/
+
+;;
 (function ($, window, document, undefined) {
     var kA = 'kResponsiveMenu'
 
@@ -195,6 +210,7 @@
                         __change = this.doChangeMenu();
                     getchange != __change && (getchange = __change);
                     if (__type == 3 && $p) {
+                        $('.k-menu-backdrop').removeClass('active')
                         $e.css({
                             "display": "block",
                             "position": $pp,
@@ -374,4 +390,4 @@
         onBegin: null,
         onHover: null
     }
-})(jQuery, window, document)
+})(jQuery, window, document);;
