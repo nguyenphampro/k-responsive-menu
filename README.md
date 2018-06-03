@@ -1,4 +1,4 @@
-# Demo 
+# APIs Docs & Demo 
 
 k-responsive-menu is a lightweight jQuery plugin to create responsive multi-level navigation menus with multi device support
 
