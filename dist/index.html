@@ -89,7 +89,10 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
       ga('send', 'pageview');
     </script>
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/k-responsive-menu.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
@@ -103,69 +106,203 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
   <body class="bn-index">
     <div class="container">
       <h1 style="margin:2rem 0" class="display-4">K-Resposive-Menu</h1>
+      <p>Working on Bootstrap 4</p>
+      <p> <code>k-responsiv-menu </code>is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support, By Bao Nguyen <a href="http://baonguyenyam.github.io/">http://baonguyenyam.github.io/ </a></p>
       <hr>
-      <nav>
-        <div class="menu-toggle">
-          <h3>Menu</h3>
-          <button id="menu-btn" type="button"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      <div class="row mt-5">
+        <div class="col-sm-3"> 
+          <div style="position: -webkit-sticky; position: sticky; top: 1rem" class="list-group p-0">
+            <div class="list-group-item active">Menu</div><a href="#sec1" class="list-group-item list-group-item-action">Gettings started </a><a href="#sec2" class="list-group-item list-group-item-action">Demo </a><a href="#sec3" class="list-group-item list-group-item-action">APIs </a><a href="https://github.com/baonguyenyam/k-responsive-menu" class="list-group-item list-group-item-action">Github </a>
+          </div>
         </div>
-        <ul id="demoMenu" data-menu-style="horizontal" class="k-responsive-menu">
-          <li><a href="">Item one  </a></li>
-          <li><a href="">Item two </a>
-            <ul>
-              <li><a href="">sub Item one </a></li>
-              <li><a href="">sub Item two </a></li>
-              <li><a href="">sub Item Three </a></li>
-            </ul>
-          </li>
-          <li><a href="">Item three </a></li>
-          <li><a href="">Item four </a></li>
-        </ul>
-      </nav>
-      <h3 style="margin:2rem 0">HTML</h3>
-      <pre class="prettyprint lang-html">&lt;nav&gt;
-  &lt;div class=&quot;menu-toggle&quot;&gt;
-    &lt;h3&gt;Menu&lt;/h3&gt;
-    &lt;button type=&quot;button&quot; id=&quot;menu-btn&quot;&gt;
-      &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
-      &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
-      &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
-    &lt;/button&gt;
-  &lt;/div&gt;
-  &lt;ul id=&quot;demoMenu&quot; class=&quot;k-responsive-menu&quot; data-menu-style=&quot;horizontal&quot;&gt;
-    &lt;li&gt;&lt;a href=&quot;&quot;&gt;Item one  &lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;&quot;&gt;Item two &lt;/a&gt;
-      &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&quot;&quot;&gt;sub Item one &lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;&quot;&gt;sub Item two &lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;&quot;&gt;sub Item Three &lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;&quot;&gt;Item three &lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;&quot;&gt;Item four &lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/nav&gt;
+        <div class="col-sm-9"> 
+          <h4 id="sec1">Gettings started </h4>
+          <p class="lead text-danger">This Plugins required Bootstrap Framework</p>
+          <hr>
+          <h5 class="h5">Install via Bower</h5>
+          <div class="border p-3 bg-light mb-5"> <code>bower i k-responsive-menu -S</code></div>
+          <h5 class="h5">CSS</h5>
+          <p>Copy-paste the stylesheet <code>&lt;link&gt; </code>into your <code>&lt;head&gt; </code>before all other stylesheets to load our CSS.</p>
+          <pre class="p-3 prettyprint lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;./bower_components./css/k-responsive-menu.css&quot;&gt;</pre>
+          <h5 class="h5">JS</h5>
+          <p>Place the following <code>&lt;script&gt; </code>near the end of your pages, right before the closing <code>&lt;/body&gt; </code>tag, to enable them. jQuery must come first, then k-responsive-menu.js, and then our JavaScript plugins.</p>
+          <pre class="p-3 prettyprint lang-html">&lt;script src=&quot;./bower_components./js/k-responsive-menu.js&quot;&gt;
 </pre>
-      <div class="alert alert-info">Change default style of the Menu (data-menu-style="") to <code>horizontal</code>, <code>vertical</code>, <code>accordion</code></div>
-      <h3 style="margin:2rem 0">JS</h3>
-      <pre class="prettyprint lang-js">$(document).ready(function() {
-  $('#demoMenu').kResponsiveMenu({
-    resizeWidth: '768', // Set the breakpoint same in Media query       
-    animationSpeed: 'fast', //slow, medium, fast
-    accoridonExpAll: false //Expands all the accordion menu on click
+          <h3 id="sec2" class="h3 mt-5">Demo</h3>
+          <hr>
+          <dl class="row">
+            <dt class="col-sm-3"> <a href="./header-basic.html" class="btn btn-primary">Basic</a></dt>
+            <dd class="col-sm-9">Toggle menu basic</dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-3"> <a href="./header-basic-form.html" class="btn btn-primary">Basic with form</a></dt>
+            <dd class="col-sm-9">Toggle menu with form inline</dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-3"> <a href="./header-fluid.html" class="btn btn-primary">Fluid</a></dt>
+            <dd class="col-sm-9">Toggle menu with form fluid</dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-3"> <a href="./header-push-left.html" class="btn btn-primary">Push Left</a></dt>
+            <dd class="col-sm-9">Push menu Left</dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-3"> <a href="./header-push-right.html" class="btn btn-primary">Push Right</a></dt>
+            <dd class="col-sm-9">Push menu Right</dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-3"> <a href="./header-map-to.html" class="btn btn-primary">Map to</a></dt>
+            <dd class="col-sm-9">Menu Mapto</dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-3"> <a href="./header-attr.html" class="btn btn-primary">Using Attribute</a></dt>
+            <dd class="col-sm-9">Without JS Options only using Attribute</dd>
+          </dl>
+          <h4 id="sec3" class="mt-5">APIs </h4>
+          <hr>
+          <h5 class="h5 mt-4">JS Default value</h5>
+          <pre class="p-3 prettyprint lang-js">$(document).ready(function() {
+  $('#demoResAllInOneMenu').kResponsiveMenu({
+    animationSpeed: 'slow', 
+    resizeWidth: 768, 
+    menuType: 'horizontal',
+    menuPush: null,
+    menuPushPosition: 'absolute', 
+    menuPushWidth: '100%',
+    menuIcon: null, 
+    onResize: null,
+    onComplete: null,
+    onChange: null,
+    onClick: null,
+    onBegin: null,
+    onHover: null
   });
-});
-</pre>
+});</pre>
+          <h5 class="h5 mt-4">Value</h5>
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Value</th>
+                <th scope="col">Default</th>
+                <th scope="col">Setting</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>animationSpeed</td>
+                <td>'slow'</td>
+                <td>'slow', 'fast', 200...</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>resizeWidth</td>
+                <td>768</td>
+                <td>'xs', 'sm', 'md', 'lg', 'xl', 480...</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>menuType</td>
+                <td>'horizontal'</td>
+                <td>'horizontal', 'vertical', 'accordion'</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>menuPush</td>
+                <td>null</td>
+                <td>'right', 'left'</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>menuPushPosition</td>
+                <td>'absolute'</td>
+                <td>'fixed'</td>
+              </tr>
+              <tr>
+                <th scope="row">6</th>
+                <td>menuPushWidth</td>
+                <td>'100%'</td>
+                <td>'px', '%', 'rem'</td>
+              </tr>
+              <tr>
+                <th scope="row">7</th>
+                <td>menuIcon</td>
+                <td>null</td>
+                <td>'&lt;i class='fa fa-bars'&gt;&lt;/i&gt;'</td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 class="h5 mt-4">Events</h5>
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Value</th>
+                <th scope="col">Default</th>
+                <th scope="col">Setting</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>onResize<br>onComplete<br>onChange<br>onClick<br>onBegin<br>onHover...</td>
+                <td>null</td>
+                <td>onResize: function () {}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 class="h5 mt-4">Default Attribute</h5>
+          <div class="border p-3 bg-light mb-5">
+            <dl class="row">
+              <dt class="col-sm-3"> <code>[k-toggle-for]</code></dt>
+              <dd class="col-sm-9">Toggle menu have [k-toggle-for] value</dd>
+            </dl>
+            <dl class="row mb-0">
+              <dt class="col-sm-3"> <code>[k-menu-map-to]</code></dt>
+              <dd class="col-sm-9">On the mobile where contents have attribute [k-menu-map-to] will be auto clone to target element value</dd>
+            </dl>
+          </div>
+          <h5 class="h5 mt-4">Using Attribute only</h5>
+          <div class="border p-3 bg-light mb-5">
+            <dl class="row">
+              <dt class="col-sm-3"> <code>k-responsive-menu</code></dt>
+              <dd class="col-sm-9">true</dd>
+            </dl>
+            <dl class="row">
+              <dt class="col-sm-3"> <code>k-menu-resize</code></dt>
+              <dd class="col-sm-9">700 OR 'xs', 'sm', 'md', 'lg', 'xl'</dd>
+            </dl>
+            <dl class="row">
+              <dt class="col-sm-3"> <code>k-menu-icon</code></dt>
+              <dd class="col-sm-9">&lt;i class='fa fa-bars'&gt;&lt;/i&gt;</dd>
+            </dl>
+            <dl class="row">
+              <dt class="col-sm-3"> <code>k-menu-speed</code></dt>
+              <dd class="col-sm-9">'slow' OR 'fast', 500</dd>
+            </dl>
+            <dl class="row">
+              <dt class="col-sm-3"> <code>k-menu-width</code></dt>
+              <dd class="col-sm-9">'250px' OR '100%', '40rem'</dd>
+            </dl>
+            <dl class="row">
+              <dt class="col-sm-3"> <code>k-menu-push</code></dt>
+              <dd class="col-sm-9">'left' OR 'right'</dd>
+            </dl>
+            <dl class="row mb-0">
+              <dt class="col-sm-3"> <code>k-menu-position</code></dt>
+              <dd class="col-sm-9">'fixed' OR 'absolute'</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <h2 class="h2 mb-3">Licence</h2>
+      <h5 class="h5">Copyright © 2018 Bao Nguyen</h5>
+      <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+      <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+      <p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      <h6 class="h6 mb-5">Bảo Nguyên</h6>
     </div>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <script>
-      $(document).ready(function() {
-         $('#demoMenu').kResponsiveMenu({
-           resizeWidth: '768', // Set the breakpoint same in Media query       
-           animationSpeed: 'fast', //slow, medium, fast
-           accoridonExpAll: false //Expands all the accordion menu on click
-         });
-       });
-    </script>
   </body>
 </html></html>

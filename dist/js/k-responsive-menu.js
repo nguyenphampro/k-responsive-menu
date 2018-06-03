@@ -7,113 +7,319 @@
  *  Website: http://baonguyenyam.github.io
  *  Version: 1.0.0
  */
+
 ;
-(function ($) {
-    $.fn.kResponsiveMenu = function (options) {
+(function ($, window, document, undefined) {
+    var kA = 'kResponsiveMenu';
 
-        //plugin's default options
-        var defaults = {
-            resizeWidth: '768',
-            animationSpeed: 'fast',
-            accoridonExpAll: false
-        };
+    function kaGlobal(element, options, type) {
+        this.element = element;
+        this._name = kA;
+        this._defaults = $.fn.kResponsiveMenu.defaults;
+        this.options = $.extend({}, this._defaults, options);
+        this.init();
+    }
 
-        //Variables
-        var options = $.extend(defaults, options),
-            opt = options,
-            $resizeWidth = opt.resizeWidth,
-            $animationSpeed = opt.animationSpeed,
-            $expandAll = opt.accoridonExpAll,
-            $kMenu = $(this),
-            $menuStyle = $(this).attr('data-menu-style');
+    $.extend(kaGlobal.prototype, {
 
-        // Initilizing        
-        $kMenu.find('ul').addClass("sub-menu");
-        $kMenu.find('ul').siblings('a').append('<span class="arrow "></span>');
-        if ($menuStyle == 'accordion') {
-            $(this).addClass('collapse');
-        }
+        init: function init() {
+            this.bindEvents();
+            this.onComplete();
+        },
+        destroy: function destroy() {
+            this.unbindEvents();
+            this.element.removeData();
+        },
 
-        // Window resize on menu breakpoint 
-        if ($(window).innerWidth() <= $resizeWidth) {
-            menuCollapse();
-        }
-        $(window).resize(function () {
-            menuCollapse();
-        });
-
-        // Menu Toggle
-        function menuCollapse() {
-            var w = $(window).innerWidth();
-            if (w <= $resizeWidth) {
-                $kMenu.find('li.menu-active').removeClass('menu-active');
-                $kMenu.find('ul.slide').removeClass('slide').removeAttr('style');
-                $kMenu.addClass('collapse hide-menu');
-                $kMenu.attr('data-menu-style', '');
-                $('.menu-toggle').show();
+        bindEvents: function bindEvents() {
+            var plugin = this;
+            this.element = $(this.element);
+            var $e,
+                $o,
+                $d,
+                $i,
+                $p,
+                $pw,
+                $pp,
+                $sl,
+                getAttr = this.element.attr('k-responsive-menu');
+            if (getAttr && getAttr.length > 0) {
+                // Khai báo bởi Attr
+                $e = this.element, $o = $e.attr('k-menu-resize') ? isNaN($e.attr('k-menu-resize')) ? $e.attr('k-menu-resize') : parseInt($e.attr('k-menu-resize')) : this.options.resizeWidth, $d = $e.attr('k-menu-type') ? $e.attr('k-menu-type').toLocaleLowerCase() : this.options.menuType, $i = $e.attr('k-menu-icon') ? $e.attr('k-menu-icon').toLocaleLowerCase() : this.options.menuIcon, $p = $e.attr('k-menu-push') ? $e.attr('k-menu-push').toLocaleLowerCase() : this.options.menuPush, $pp = $e.attr('k-menu-position') ? $e.attr('k-menu-position').toLocaleLowerCase() : this.options.menuPushPosition, $pw = $e.attr('k-menu-width') ? $e.attr('k-menu-width').toLocaleLowerCase() : this.options.menuPushWidth, $sl = $e.attr('k-menu-speed') ? isNaN($e.attr('k-menu-speed')) ? $e.attr('k-menu-speed') : parseInt($e.attr('k-menu-speed')) : this.options.animationSpeed;
             } else {
-                $kMenu.attr('data-menu-style', $menuStyle);
-                $kMenu.removeClass('collapse hide-menu').removeAttr('style');
-                $('.menu-toggle').hide();
-                if ($kMenu.attr('data-menu-style') == 'accordion') {
-                    $kMenu.addClass('collapse');
-                    return;
+                // Khai báo bởi JS
+                $e = this.element, $o = this.options.resizeWidth, $d = this.options.menuType, $i = this.options.menuIcon, $p = this.options.menuPush, $pp = this.options.menuPushPosition, $pw = this.options.menuPushWidth, $sl = this.options.animationSpeed;
+            }
+            // Add Class Default
+            $e.addClass('k-responsive-menu');
+            $e.addClass('k-menu-' + $d);
+
+            // DO MENU 
+            var nguyenApp = {
+                resizeTimer: null,
+                doMenuPush: function doMenuPush() {
+                    // Hiển thị
+                    // Left   => return 1
+                    // Right    => return 2
+                    return "left" === $p ? $p : "right" === $p ? $p : null;
+                },
+                doMenuType: function doMenuType() {
+                    // Loại menu
+                    // Accordion   => return 1
+                    // Vertical    => return 2
+                    // Horizontal  => return 3
+                    return "accordion" === $d ? 1 : "vertical" === $d ? 2 : 3;
+                },
+                doMenuSpeed: function doMenuSpeed() {
+                    // Tốc độ chuyển đổi
+                    // Number       => Return number 
+                    // Slow, Fast   => Return string
+                    return "number" == typeof $sl ? parseInt($sl) : "string" == typeof $sl ? $sl : void 0;
+                },
+                doChangeMenu: function doChangeMenu() {
+                    // Kích thước sẽ thay đổi menu
+                    // Number                         => Return number 
+                    // 'xs', 'sm', 'md', 'lg', 'xl'   => Return number
+                    if ("number" == typeof $o) return parseInt($o);
+                    if ("string" == typeof $o) {
+                        var o;
+                        return o = "xs" === $o ? 0 : "sm" === $o ? 576 : "md" === $o ? 768 : "lg" === $o ? 992 : "xl" === $o ? 1200 : 0, parseInt(o);
+                    }
+                },
+                menuBar: function menuBar() {
+                    var __speed = this.doMenuSpeed(),
+                        __type = this.doMenuType();
+                    $i && 0 < $i.length && $(".k-menu-toggle").html($i);
+                    var toggle = 0;
+                    if (__type == 3 && this.doMenuPush()) {
+                        $e.addClass('k-menu-push-' + this.doMenuPush());
+                    }
+                    $('.k-menu-toggle').on('click', function (event) {
+                        event.preventDefault();
+                        var getFather = $(this).attr('k-toggle-for');
+                        if (toggle == 1) {
+                            $(this).removeClass('active');
+                            switchMenu(getFather);
+                            toggle = 0;
+                        } else {
+                            $(this).addClass('active');
+                            switchMenu(getFather);
+                            toggle = 1;
+                        }
+                    });
+
+                    var switchMenu = function switchMenu(getFather) {
+                        if (__type == 3) {
+                            if ($p) {
+                                if ($p === 'right') {
+                                    var n = $(getFather).css("right");
+                                    if (n != '0px') {
+                                        $(getFather).animate({
+                                            right: "0"
+                                        }, __speed);
+                                    } else {
+                                        $(getFather).animate({
+                                            right: "-" + $pw
+                                        }, __speed);
+                                    }
+                                } else {
+                                    var n = $(getFather).css("left");
+                                    if (n != '0px') {
+                                        $(getFather).animate({
+                                            left: "0"
+                                        }, __speed);
+                                    } else {
+                                        $(getFather).animate({
+                                            left: "-" + $pw
+                                        }, __speed);
+                                    }
+                                }
+                            } else {
+                                $(getFather).slideToggle(__speed);
+                            }
+                        }
+                    };
+                },
+                doResponsiveMenu: function doResponsiveMenu() {
+                    var getchange = 0,
+                        __type = this.doMenuType(),
+                        __change = this.doChangeMenu();
+                    getchange != __change && (getchange = __change);
+                    if (__type == 3 && $p) {
+                        $e.css({
+                            "display": "block",
+                            "position": $pp,
+                            "width": $pw
+                        });
+                        if ($p === 'right') {
+                            $e.css({
+                                "right": "-" + $pw
+                            });
+                        } else {
+                            $e.css({
+                                "left": "-" + $pw
+                            });
+                        }
+                    }
+                    // Add or Remove Class on Screen
+                    if ($(window).innerWidth() >= getchange) {
+                        if (__type == 3) {
+                            this.makeHorizontalPC();
+                        }
+                    } else {
+                        if (__type == 3) {
+                            this.makeHorizontalMobile();
+                        }
+                    }
+                },
+                makeHorizontalPC: function makeHorizontalPC() {
+                    this.doMapBack();
+                    $e.removeClass('k-active').removeAttr('style');
+                    $('.k-menu-bar').hide();
+                },
+                makeHorizontalMobile: function makeHorizontalMobile() {
+                    this.doMapTo();
+                    $e.addClass('k-active');
+                    $('.k-menu-bar').show();
+                },
+                doMapTo: function doMapTo() {
+                    $('[k-menu-map-to]').each(function () {
+                        var getTo = $(this).attr('k-menu-map-to');
+                        $(getTo).html($(this).clone().removeAttr('k-menu-map-to').show());
+                        $(this).hide();
+                    });
+                },
+                doMapBack: function doMapBack() {
+                    $('[k-menu-map-to]').each(function () {
+                        var getTo = $(this).attr('k-menu-map-to');
+                        $(getTo).html('');
+                        $(this).show();
+                    });
                 }
-                $kMenu.find('li.menu-active').removeClass('menu-active');
-                $kMenu.find('ul.slide').removeClass('slide').removeAttr('style');
+            };
+
+            nguyenApp.menuBar();
+            nguyenApp.doResponsiveMenu();
+
+            plugin.element.on('click' + '.' + plugin._name, function () {
+                plugin.onClick.call(plugin);
+            });
+            plugin.element.on('mouseover' + '.' + plugin._name, function () {
+                plugin.onHover.call(plugin);
+            });
+            plugin.element.on('mouseleave' + '.' + plugin._name, function () {
+                plugin.unHover.call(plugin);
+            });
+            $(window).resize(function () {
+                nguyenApp.doResponsiveMenu();
+                plugin.onResize.call(plugin);
+                clearTimeout(nguyenApp.resizeTimer);
+                nguyenApp.resizeTimer = setTimeout(function () {
+                    plugin.onResizeEnd.call(plugin);
+                }, 200);
+            });
+        },
+
+        unbindEvents: function unbindEvents() {
+            this.element.off('.' + this._name);
+        },
+
+        onResize: function onResize() {
+            var onResize = this.options.onResize;
+            if (typeof onResize === 'function') {
+                onResize.call(this.element);
+            }
+        },
+
+        onResizeEnd: function onResizeEnd() {
+            var onResizeEnd = this.options.onResizeEnd;
+            if (typeof onResizeEnd === 'function') {
+                onResizeEnd.call(this.element);
+            }
+        },
+
+        onClick: function onClick() {
+            var onClick = this.options.onClick;
+
+            if (typeof onClick === 'function') {
+                onClick.call(this.element);
+            }
+        },
+
+        onHover: function onHover() {
+            var onHover = this.options.onHover;
+
+            if (typeof onHover === 'function') {
+                onHover.call(this.element);
+            }
+        },
+
+        unHover: function unHover() {
+            var unHover = this.options.unHover;
+
+            if (typeof unHover === 'function') {
+                unHover.call(this.element);
+            }
+        },
+
+        onBegin: function onBegin() {
+            var onBegin = this.options.onBegin;
+
+            if (typeof onBegin === 'function') {
+                onBegin.call(this.element);
+            }
+        },
+
+        onComplete: function onComplete() {
+            var onComplete = this.options.onComplete;
+
+            if (typeof onComplete === 'function') {
+                onComplete.call(this.element);
+            }
+        },
+
+        onChange: function onChange() {
+            var onChange = this.options.onChange;
+
+            if (typeof onChange === 'function') {
+                onChange.call(this.element);
             }
         }
 
-        //ToggleBtn Click
-        $('#menu-btn').click(function () {
-            $kMenu.slideToggle().toggleClass('hide-menu');
-        });
+    });
 
-        // Main function 
-        return this.each(function () {
-            // Function for Horizontal menu on mouseenter
-            $kMenu.on('mouseover', '> li a', function () {
-                if ($kMenu.hasClass('collapse') === true) {
-                    return false;
-                }
-                $(this).off('click', '> li a');
-                $(this).parent('li').siblings().children('.sub-menu').stop(true, true).slideUp($animationSpeed).removeClass('slide').removeAttr('style').stop();
-                $(this).parent().addClass('menu-active').children('.sub-menu').slideDown($animationSpeed).addClass('slide');
-                return;
-            });
-            $kMenu.on('mouseleave', 'li', function () {
-                if ($kMenu.hasClass('collapse') === true) {
-                    return false;
-                }
-                $(this).off('click', '> li a');
-                $(this).removeClass('menu-active');
-                $(this).children('ul.sub-menu').stop(true, true).slideUp($animationSpeed).removeClass('slide').removeAttr('style');
-                return;
-            });
-            //End of Horizontal menu function
-
-            // Function for Vertical/Responsive Menu on mouse click
-            $kMenu.on('click', '> li a', function () {
-                if ($kMenu.hasClass('collapse') === false) {
-                    //return false;
-                }
-                $(this).off('mouseover', '> li a');
-                if ($(this).parent().hasClass('menu-active')) {
-                    $(this).parent().children('.sub-menu').slideUp().removeClass('slide');
-                    $(this).parent().removeClass('menu-active');
-                } else {
-                    if ($expandAll == true) {
-                        $(this).parent().addClass('menu-active').children('.sub-menu').slideDown($animationSpeed).addClass('slide');
-                        return;
-                    }
-                    $(this).parent().siblings().removeClass('menu-active');
-                    $(this).parent('li').siblings().children('.sub-menu').slideUp().removeClass('slide');
-                    $(this).parent().addClass('menu-active').children('.sub-menu').slideDown($animationSpeed).addClass('slide');
-                }
-            });
-            //End of responsive menu function
-        });
-        //End of Main function
+    // Click Toggle
+    $.fn.clickToggle = function (a, b) {
+        function cb() {
+            [b, a][this._tog ^= 1].call(this);
+        }
+        return this.on('click', cb);
     };
-})(jQuery);;
+    // Build MENU 
+
+    $.fn.kResponsiveMenu = function (options) {
+        this.each(function () {
+            if (!$.data(this, 'kResponsiveMenu_' + kA)) {
+                $.data(this, 'kResponsiveMenu_' + kA, new kaGlobal(this, options, 'initial'));
+            }
+        });
+        return this;
+    };
+
+    $.fn.kResponsiveMenu.defaults = {
+        animationSpeed: 'slow', // slow, fast, 200
+        resizeWidth: 768,
+        menuType: 'horizontal', // horizontal, vertical, accordion
+        menuPush: null, // right, left
+        menuPushPosition: 'absolute', // fixed
+        menuPushWidth: '100%', // px, %, rem
+        menuIcon: null,
+        onResize: null,
+        onComplete: null,
+        onChange: null,
+        onClick: null,
+        onBegin: null,
+        onHover: null
+    };
+})(jQuery, window, document);
 //# sourceMappingURL=k-responsive-menu.js.map
