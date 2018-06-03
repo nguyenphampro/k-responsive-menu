@@ -1,0 +1,109 @@
+extends _layout/layout
+
+block variables
+  - var title = 'K-Resposive-Menu'
+  - var bodyclass = 'index'
+
+block css
+  link(rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css")
+  link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+  link(rel="stylesheet" type="text/css" href="./css/k-responsive-menu.css")
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js')
+  script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js')
+
+block header 
+  header.bg-light
+    .k-menu-bar.container
+      #logo.mr-auto
+      button.k-menu-toggle.navbar-toggler(k-toggle-for="#demoResAllInOneMenu") MENU
+    #demoResAllInOneMenu.container(k-responsive-menu="true", k-menu-resize="780", k-menu-icon="<i class='fa fa-bars'></i>", k-menu-speed="200", k-menu-width="250px", k-menu-push="left", k-menu-position="fixed")
+      .k-logo.navbar-brand(k-menu-map-to="#logo") LOGO
+      ul.nav
+        li.nav-item
+          a.nav-link(href='#') About us
+        li.nav-item
+          a.nav-link(href='#') Services
+        li.nav-item.dropdown
+          a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            | Dropdown
+          .dropdown-menu(aria-labelledby='navbarDropdown')
+            a.dropdown-item(href='#') Action
+            a.dropdown-item(href='#') Another action
+            .dropdown-divider
+            a.dropdown-item(href='#') Something else here
+        li.nav-item
+          a.nav-link(href='#') Shop
+        li.nav-item
+          a.nav-link(href='#') Contact us
+block body 
+  .container
+    .border.p-3.bg-light.mt-4
+      dl.row
+        dt.col-sm-3 
+          code k-responsive-menu
+        dd.col-sm-9 true
+      dl.row
+        dt.col-sm-3 
+          code k-menu-resize
+        dd.col-sm-9 700 OR 'xs', 'sm', 'md', 'lg', 'xl'
+      dl.row
+        dt.col-sm-3 
+          code k-menu-icon
+        dd.col-sm-9 &lt;i class='fa fa-bars'&gt;&lt;/i&gt;
+      dl.row
+        dt.col-sm-3 
+          code k-menu-speed
+        dd.col-sm-9 'slow' OR 'fast', 500
+      dl.row
+        dt.col-sm-3 
+          code k-menu-width
+        dd.col-sm-9 '250px' OR '100%', '40rem'
+      dl.row
+        dt.col-sm-3 
+          code k-menu-push
+        dd.col-sm-9 'left' OR 'right'
+      dl.row.mb-0
+        dt.col-sm-3 
+          code k-menu-position
+        dd.col-sm-9 'fixed' OR 'absolute'
+      
+
+    .row
+      .col
+        h3(style="margin:2rem 0;") HTML
+        //- https://www.freeformatter.com/html-escape.html#ad-output
+        pre.prettyprint.lang-html.
+          &lt;header class=&quot;bg-light&quot;&gt;
+            &lt;div class=&quot;k-menu-bar container&quot;&gt;
+              &lt;div id=&quot;logo&quot; class=&quot;mr-auto&quot;&gt;&lt;/div&gt;
+              &lt;button k-toggle-for=&quot;#demoResAllInOneMenu&quot; class=&quot;k-menu-toggle navbar-toggler&quot;&gt;MENU&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div id=&quot;demoResAllInOneMenu&quot; k-responsive-menu=&quot;true&quot; k-menu-resize=&quot;780&quot; k-menu-icon=&quot;&lt;i class='fa fa-bars'&gt;&lt;/i&gt;&quot; k-menu-speed=&quot;200&quot; k-menu-width=&quot;250px&quot; k-menu-push=&quot;left&quot; k-menu-position=&quot;fixed&quot; class=&quot;container&quot;&gt;
+              &lt;div k-menu-map-to=&quot;#logo&quot; class=&quot;k-logo navbar-brand&quot;&gt;LOGO&lt;/div&gt;
+              &lt;ul class=&quot;nav&quot;&gt;
+                &lt;li class=&quot;nav-item&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;nav-link&quot;&gt;About us&lt;/a&gt;&lt;/li&gt;
+                &lt;li class=&quot;nav-item&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;nav-link&quot;&gt;Services&lt;/a&gt;&lt;/li&gt;
+                &lt;li class=&quot;nav-item dropdown&quot;&gt;&lt;a id=&quot;navbarDropdown&quot; href=&quot;#&quot; role=&quot;button&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot; class=&quot;nav-link dropdown-toggle&quot;&gt;Dropdown&lt;/a&gt;
+                  &lt;div aria-labelledby=&quot;navbarDropdown&quot; class=&quot;dropdown-menu&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;dropdown-item&quot;&gt;Action&lt;/a&gt;&lt;a href=&quot;#&quot; class=&quot;dropdown-item&quot;&gt;Another action&lt;/a&gt;
+                    &lt;div class=&quot;dropdown-divider&quot;&gt;&lt;/div&gt;&lt;a href=&quot;#&quot; class=&quot;dropdown-item&quot;&gt;Something else here&lt;/a&gt;
+                  &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;nav-item&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;nav-link&quot;&gt;Shop&lt;/a&gt;&lt;/li&gt;
+                &lt;li class=&quot;nav-item&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;nav-link&quot;&gt;Contact us&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/div&gt;
+          &lt;/header&gt;
+
+        h3(style="margin:2rem 0;") JS
+        
+        pre.prettyprint.lang-js.
+          $(document).ready(function() {
+            $('#demoResAllInOneMenu').kResponsiveMenu();
+          });
+
+    
+  script(src='https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js')
+  script.
+     $(document).ready(function() {
+        $('#demoResAllInOneMenu').kResponsiveMenu();
+      });

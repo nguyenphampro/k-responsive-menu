@@ -28,39 +28,36 @@ ___
 
 ```js
 $(document).ready(function() {
-  $('#demoMenu').kResponsiveMenu({
-    resizeWidth: '768', // Set the breakpoint same in Media query       
-    animationSpeed: 'fast', //slow, medium, fast
-    accoridonExpAll: false //Expands all the accordion menu on click
+  $('#demoResAllInOneMenu').kResponsiveMenu({
+    animationSpeed: 'slow', // slow, fast, 200
+    resizeWidth: 800, // 'xs', 'sm', 'md', 'lg', 'xl', 480,
+    menuIcon: '<i class="fa fa-bars"></i>'
   });
 });
 ```
 ***HTML:***
 
 ```html
-<nav>
-  <div class="menu-toggle">
-    <h3>Menu</h3>
-    <button type="button" id="menu-btn">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
+<header class="bg-light">
+  <div class="k-menu-bar container">
+    <div id="logo" class="mr-auto"></div>
+    <button k-toggle-for="#demoResAllInOneMenu" class="k-menu-toggle navbar-toggler">MENU</button>
   </div>
-
-  <ul id="demoMenu" class="k-responsive-menu" data-menu-style="horizontal">
-    <li><a href="">Item one  </a></li>
-    <li><a href="">Item two </a>
-      <ul>
-        <li><a href="">sub Item one </a></li>
-        <li><a href="">sub Item two </a></li>
-        <li><a href="">sub Item Three </a></li>
-      </ul>
-    </li>
-    <li><a href="">Item three </a></li>
-    <li><a href="">Item four </a></li>
-  </ul>
-</nav>
+  <div id="demoResAllInOneMenu" class="container">
+    <div k-menu-map-to="#logo" class="k-logo navbar-brand">LOGO</div>
+    <ul class="nav">
+      <li class="nav-item"><a href="#" class="nav-link">About us</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Services</a></li>
+      <li class="nav-item dropdown"><a id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
+        <div aria-labelledby="navbarDropdown" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a>
+          <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="#" class="nav-link">Shop</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Contact us</a></li>
+    </ul>
+  </div>
+</header>
 ```
 
 

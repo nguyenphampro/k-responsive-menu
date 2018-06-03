@@ -22,5 +22,6 @@ html(dir='ltr', lang='en')
 		include ../_include/_script
 		block css
 	body(class="#{prefix}#{bodyclass || 'default'}")
+		block header
 		block body
 		block js

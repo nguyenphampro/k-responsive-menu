@@ -6,15 +6,51 @@
  *  Version: 1.0.0
  */
 .k-menu-bar
-	padding: .5rem 1rem
-	&.bg-light
-		background: #dfdfdf
+	padding: .5rem 15px 
+	display: flex
+	flex-direction: row
+	align-items: center
+
 .k-responsive-menu, [k-responsive-menu]
-	padding: 0
-	margin: 0
 	> * 
 		list-style-type: none
+	.k-menu-toggle
+		display: none
+	.form-inline
+		padding: 0 15px 0 15px
 	// Horizontal
 	&.k-menu-horizontal
+		padding-top: .5rem
+		padding-bottom: .5rem
+		display: flex
+		flex-direction: row
+		align-items: center
 		&.k-active
 			display: none
+			padding: 1rem 0
+			flex-direction: column
+			z-index: 1000
+			.dropdown-menu
+				position: static !important 
+				transform: none !important 
+				float: none
+			.k-menu-toggle
+				display: block
+			.nav 
+				flex-direction: column
+			&.k-menu-push-right
+				padding: 0
+				background: #f8f9fa
+				right: -100%
+				top: 0
+				height: 100%
+				overflow-y: scroll
+			&.k-menu-push-left
+				padding: 0
+				background: #f8f9fa
+				left: -100%
+				top: 0
+				height: 100%
+				overflow-y: scroll
+				
+		
