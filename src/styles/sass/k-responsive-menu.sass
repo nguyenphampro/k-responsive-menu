@@ -1,5 +1,5 @@
 /*
- * Project: k-responsiv-menu is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support
+ * Project: k-responsive-menu is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support
  *  Author: Bao Nguyen
  *  License: MIT
  *  Website: http://baonguyenyam.github.io
