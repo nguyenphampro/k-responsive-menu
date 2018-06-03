@@ -155,6 +155,10 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
             <dd class="col-sm-9">Menu Mapto</dd>
           </dl>
           <dl class="row">
+            <dt class="col-sm-3"> <a href="./header-backdrop.html" class="btn btn-primary">BackDrop</a></dt>
+            <dd class="col-sm-9">Menu BackDrop</dd>
+          </dl>
+          <dl class="row">
             <dt class="col-sm-3"> <a href="./header-attr.html" class="btn btn-primary">Using Attribute</a></dt>
             <dd class="col-sm-9">Without JS Options only using Attribute</dd>
           </dl>
@@ -169,6 +173,7 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
     menuPush: null,
     menuPushPosition: 'absolute', 
     menuPushWidth: '100%',
+    menuBackDrop: false, 
     menuIcon: null, 
     onResize: null,
     onComplete: null,
@@ -227,6 +232,12 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
               </tr>
               <tr>
                 <th scope="row">7</th>
+                <td>menuBackDrop</td>
+                <td>false</td>
+                <td>true/false</td>
+              </tr>
+              <tr>
+                <th scope="row">8</th>
                 <td>menuIcon</td>
                 <td>null</td>
                 <td>'&lt;i class='fa fa-bars'&gt;&lt;/i&gt;'</td>
