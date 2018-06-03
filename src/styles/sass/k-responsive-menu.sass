@@ -1,15 +1,25 @@
-/*
- * Project: k-responsive-menu is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support
+/* 
+ *  Name: K-Responsive-Menu
+ *  URL: https://baonguyenyam.github.io/k-responsive-menu/
+ *  Coding by: Bao Nguyen
+ *  Tel: 0.96.96.89.89.3
+ *  Email: baonguyenyam@gmail.com
+ *  URL: fb.com/pham.nguyen.bao.nguyen,
+ *  baonguyenyam.github.io
+ *  baonguyenyam.blogspot.com
+ *  Project: k-responsive-menu is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support
  *  Author: Bao Nguyen
  *  License: MIT
  *  Website: http://baonguyenyam.github.io
  *  Version: 1.0.0
  */
+/* MENU BAR */
 .k-menu-bar
 	padding: .5rem 15px 
 	display: flex
 	flex-direction: row
 	align-items: center
+/* MENU BACKDROP */
 .k-menu-backdrop 
 	content: ''
 	display: block
@@ -23,7 +33,7 @@
 	display: none
 	&.active 
 		display: block
-
+/* BEGIN MENU */
 .k-responsive-menu, [k-responsive-menu]
 	> * 
 		list-style-type: none
@@ -31,7 +41,8 @@
 		display: none
 	.form-inline
 		padding: 0 15px 0 15px
-	// Horizontal
+/* Horizontal */
+.k-responsive-menu, [k-responsive-menu]
 	&.k-menu-horizontal
 		padding-top: .5rem
 		padding-bottom: .5rem
@@ -65,5 +76,49 @@
 				top: 0
 				height: 100%
 				overflow-y: scroll
-				
-		
+/* Vertical */
+.k-responsive-menu, [k-responsive-menu]
+	&.k-menu-vertical
+		padding-top: .5rem
+		padding-bottom: .5rem
+		display: flex
+		flex-direction: column
+		.form-inline
+			padding: 15px 0
+		.dropdown-menu
+			position: static !important
+			transform: none !important
+			float: none
+		.nav 
+			display: flex
+			flex-direction: column
+			.nav-item
+				.nav-link
+					padding: .5rem 0
+		&.k-active
+			display: none
+			padding: 1rem 0
+			flex-direction: column
+			z-index: 1000
+			.form-inline
+				padding: 0 15px 0 15px
+			.k-menu-toggle
+				display: block
+			.nav 
+				.nav-item
+					.nav-link
+						padding: .5rem 1rem
+			&.k-menu-push-right
+				padding: 0
+				background: #f8f9fa
+				right: -100%
+				top: 0
+				height: 100%
+				overflow-y: scroll
+			&.k-menu-push-left
+				padding: 0
+				background: #f8f9fa
+				left: -100%
+				top: 0
+				height: 100%
+				overflow-y: scroll

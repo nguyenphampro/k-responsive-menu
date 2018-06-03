@@ -7,13 +7,14 @@ $$  __$$\ $$  __$$ |$$ |  $$ |$$ \$$$$ |$$ |\_$$ |$$ |  $$ |   \$$  /   $$  __| 
 $$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |\$$$ |$$ |  $$ |$$ |  $$ |    $$ |    $$ |      $$ |\$$$ |
 $$$$$$$  |$$ |  $$ | $$$$$$  |$$ | \$$ |\$$$$$$  |\$$$$$$  |    $$ |    $$$$$$$$\ $$ | \$$ |
 \_______/ \__|  \__| \______/ \__|  \__| \______/  \______/     \__|    \________|\__|  \__|
+Name: K-Responsive-Menu
+URL: https: //baonguyenyam.github.io/k-responsive-menu/
 Coding by: Bao Nguyen
 Tel: 0.96.96.89.89.3
 Email: baonguyenyam@gmail.com
 URL: fb.com/pham.nguyen.bao.nguyen,
 baonguyenyam.github.io
 baonguyenyam.blogspot.com
-
 * Project: k-responsive-menu is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support
 *  Author: Bao Nguyen
 *  License: MIT
@@ -23,8 +24,7 @@ baonguyenyam.blogspot.com
 
 ;;
 (function ($, window, document, undefined) {
-    var kA = 'kResponsiveMenu'
-
+    var kA = 'kResponsiveMenu';
     function kaGlobal(element, options, type) {
         this.element = element
         this._name = kA
@@ -47,7 +47,7 @@ baonguyenyam.blogspot.com
         bindEvents: function () {
             var plugin = this
             this.element = $(this.element)
-            var $e, $o, $d, $i, $p, $pw, $pp, $sl, $bd,
+            var $e, $o, $d, $i, $p, $pw, $pp, $sl, $bd, toggle = 0, 
                 getAttr = this.element.attr('k-responsive-menu')
             if (getAttr && getAttr.length > 0) {
                 // Khai báo bởi Attr
@@ -117,8 +117,7 @@ baonguyenyam.blogspot.com
                     var __speed = this.doMenuSpeed(),
                         __type = this.doMenuType()
                     $i && 0 < $i.length && $(".k-menu-toggle").html($i);
-                    var toggle = 0;
-                    if (__type == 3 && this.doMenuPush()) {
+                    if ((__type == 3 || __type == 2) && this.doMenuPush()) {
                         $e.addClass('k-menu-push-' + this.doMenuPush())
                     }
                     $('.k-menu-toggle').on('click', function (event) {
@@ -126,22 +125,22 @@ baonguyenyam.blogspot.com
                         var el = $(this)
                         var getFather = $(this).attr('k-toggle-for')
                         if (toggle == 1) {
-                            $(this).removeClass('active')
+                            $(this).removeClass('active', __speed)
                             switchMenu(getFather, toggle, el)
                             toggle = 0;
                         } else {
-                            $(this).addClass('active')
+                            $(this).addClass('active', __speed)
                             switchMenu(getFather, toggle, el)
                             toggle = 1;
                         }
                     });
 
                     var switchMenu = function (getFather, toggle, el) {
-                        if (__type == 3) {
+                        if (__type == 3 || __type == 2) {
                             if ($p) {
-                                $('.k-menu-backdrop').addClass('active').bind('click', function () {
-                                    $(this).removeClass('active')
-                                    $(el).removeClass('active')
+                                $('.k-menu-backdrop').addClass('active', __speed).bind('click', function () {
+                                    $(this).removeClass('active', __speed)
+                                    $(el).removeClass('active', __speed)
                                     if ($p === 'right') {
                                         var n = $(getFather).css("right");
                                         $(getFather).animate({
@@ -207,10 +206,11 @@ baonguyenyam.blogspot.com
                 doResponsiveMenu: function () {
                     var getchange = 0,
                         __type = this.doMenuType(),
-                        __change = this.doChangeMenu();
+                        __change = this.doChangeMenu(),
+                        __speed = this.doMenuSpeed();
                     getchange != __change && (getchange = __change);
-                    if (__type == 3 && $p) {
-                        $('.k-menu-backdrop').removeClass('active')
+                    if ((__type == 3 || __type == 2) && $p) {
+                        $('.k-menu-backdrop').removeClass('active', __speed)
                         $e.css({
                             "display": "block",
                             "position": $pp,
@@ -228,11 +228,11 @@ baonguyenyam.blogspot.com
                     }
                     // Add or Remove Class on Screen
                     if ($(window).innerWidth() >= getchange) {
-                        if (__type == 3) {
+                        if (__type == 3 || __type == 2) {
                             this.makeHorizontalPC()
                         }
                     } else {
-                        if (__type == 3) {
+                        if (__type == 3 || __type == 2) {
                             this.makeHorizontalMobile()
                         }
                     }
