@@ -32,18 +32,19 @@
         bindEvents: function () {
             var plugin = this
             this.element = $(this.element)
-            var $e, $o, $d, $i, $p, $pw, $pp, $sl, 
-            getAttr = this.element.attr('k-responsive-menu')
-            if (getAttr && getAttr.length>0) {
+            var $e, $o, $d, $i, $p, $pw, $pp, $sl, $bd,
+                getAttr = this.element.attr('k-responsive-menu')
+            if (getAttr && getAttr.length > 0) {
                 // Khai báo bởi Attr
                 $e = this.element,
-                $o = $e.attr('k-menu-resize') ? isNaN($e.attr('k-menu-resize')) ? $e.attr('k-menu-resize') : parseInt($e.attr('k-menu-resize')) : this.options.resizeWidth,
-                $d = $e.attr('k-menu-type') ? $e.attr('k-menu-type').toLocaleLowerCase() : this.options.menuType,
-                $i = $e.attr('k-menu-icon') ? $e.attr('k-menu-icon').toLocaleLowerCase() : this.options.menuIcon,
-                $p = $e.attr('k-menu-push') ? $e.attr('k-menu-push').toLocaleLowerCase() : this.options.menuPush,
-                $pp = $e.attr('k-menu-position') ? $e.attr('k-menu-position').toLocaleLowerCase() : this.options.menuPushPosition,
-                $pw = $e.attr('k-menu-width') ? $e.attr('k-menu-width').toLocaleLowerCase() : this.options.menuPushWidth,
-                $sl = $e.attr('k-menu-speed') ? isNaN($e.attr('k-menu-speed')) ? $e.attr('k-menu-speed') : parseInt($e.attr('k-menu-speed')) : this.options.animationSpeed;
+                    $o = $e.attr('k-menu-resize') ? isNaN($e.attr('k-menu-resize')) ? $e.attr('k-menu-resize') : parseInt($e.attr('k-menu-resize')) : this.options.resizeWidth,
+                    $d = $e.attr('k-menu-type') ? $e.attr('k-menu-type').toLocaleLowerCase() : this.options.menuType,
+                    $i = $e.attr('k-menu-icon') ? $e.attr('k-menu-icon').toLocaleLowerCase() : this.options.menuIcon,
+                    $p = $e.attr('k-menu-push') ? $e.attr('k-menu-push').toLocaleLowerCase() : this.options.menuPush,
+                    $pp = $e.attr('k-menu-position') ? $e.attr('k-menu-position').toLocaleLowerCase() : this.options.menuPushPosition,
+                    $pw = $e.attr('k-menu-width') ? $e.attr('k-menu-width').toLocaleLowerCase() : this.options.menuPushWidth,
+                    $sl = $e.attr('k-menu-speed') ? isNaN($e.attr('k-menu-speed')) ? $e.attr('k-menu-speed') : parseInt($e.attr('k-menu-speed')) : this.options.animationSpeed;
+                $bd = $e.attr('k-menu-backdrop') ? Boolean($e.attr('k-menu-backdrop')) : this.options.menuBackDrop;
             } else {
                 // Khai báo bởi JS
                 $e = this.element,
@@ -53,7 +54,8 @@
                     $p = this.options.menuPush,
                     $pp = this.options.menuPushPosition,
                     $pw = this.options.menuPushWidth,
-                    $sl = this.options.animationSpeed
+                    $sl = this.options.animationSpeed,
+                    $bd = this.options.menuBackDrop
             }
             // Add Class Default
             $e.addClass('k-responsive-menu')
@@ -62,6 +64,11 @@
             // DO MENU 
             var nguyenApp = {
                 resizeTimer: null,
+                doBackDrop: function () {
+                    if (!$bd) {} else {
+                        $('body').append('<div class="k-menu-backdrop"></div>');
+                    }
+                },
                 doMenuPush: function () {
                     // Hiển thị
                     // Left   => return 1
@@ -101,42 +108,77 @@
                     }
                     $('.k-menu-toggle').on('click', function (event) {
                         event.preventDefault();
+                        var el = $(this)
                         var getFather = $(this).attr('k-toggle-for')
                         if (toggle == 1) {
                             $(this).removeClass('active')
-                            switchMenu(getFather)
+                            switchMenu(getFather, toggle, el)
                             toggle = 0;
                         } else {
                             $(this).addClass('active')
-                            switchMenu(getFather)
+                            switchMenu(getFather, toggle, el)
                             toggle = 1;
                         }
                     });
 
-                    var switchMenu = function (getFather) {
+                    var switchMenu = function (getFather, toggle, el) {
                         if (__type == 3) {
                             if ($p) {
+                                $('.k-menu-backdrop').addClass('active').bind('click', function () {
+                                    $(this).removeClass('active')
+                                    $(el).removeClass('active')
+                                    if ($p === 'right') {
+                                        var n = $(getFather).css("right");
+                                        $(getFather).animate({
+                                            right: "-" + $pw,
+                                        }, {
+                                            duration: __speed,
+                                            complete: function () {}
+                                        })
+                                    } else {
+                                        var n = $(getFather).css("left");
+                                        $(getFather).animate({
+                                            left: "-" + $pw,
+                                        }, {
+                                            duration: __speed,
+                                            complete: function () {}
+                                        })
+                                    }
+                                    $(this).unbind()
+                                })
                                 if ($p === 'right') {
                                     var n = $(getFather).css("right");
                                     if (n != '0px') {
                                         $(getFather).animate({
                                             right: "0",
-                                        }, __speed)
+                                        }, {
+                                            duration: __speed,
+                                            complete: function () {}
+                                        })
                                     } else {
                                         $(getFather).animate({
                                             right: "-" + $pw,
-                                        }, __speed)
+                                        }, {
+                                            duration: __speed,
+                                            complete: function () {}
+                                        })
                                     }
                                 } else {
                                     var n = $(getFather).css("left");
                                     if (n != '0px') {
                                         $(getFather).animate({
                                             left: "0",
-                                        }, __speed)
+                                        }, {
+                                            duration: __speed,
+                                            complete: function () {}
+                                        })
                                     } else {
                                         $(getFather).animate({
                                             left: "-" + $pw,
-                                        }, __speed)
+                                        }, {
+                                            duration: __speed,
+                                            complete: function () {}
+                                        })
                                     }
                                 }
                             } else {
@@ -144,6 +186,7 @@
                             }
                         }
                     }
+
 
                 },
                 doResponsiveMenu: function () {
@@ -205,6 +248,7 @@
             }
 
             nguyenApp.menuBar()
+            nguyenApp.doBackDrop()
             nguyenApp.doResponsiveMenu()
 
             plugin.element.on('click' + '.' + plugin._name, function () {
@@ -321,6 +365,7 @@
         menuPush: null, // right, left
         menuPushPosition: 'absolute', // fixed
         menuPushWidth: '100%', // px, %, rem
+        menuBackDrop: false,
         menuIcon: null,
         onResize: null,
         onComplete: null,

@@ -89,6 +89,10 @@ block body
           dd.col-sm-9 Menu Mapto
         dl.row
           dt.col-sm-3 
+            a.btn.btn-primary(href="./header-backdrop.html") BackDrop
+          dd.col-sm-9 Menu BackDrop
+        dl.row
+          dt.col-sm-3 
             a.btn.btn-primary(href="./header-attr.html") Using Attribute
           dd.col-sm-9 Without JS Options only using Attribute
 
@@ -107,6 +111,7 @@ block body
               menuPush: null,
               menuPushPosition: 'absolute', 
               menuPushWidth: '100%',
+              menuBackDrop: false, 
               menuIcon: null, 
               onResize: null,
               onComplete: null,
@@ -157,6 +162,11 @@ block body
               td 'px', '%', 'rem'
             tr
               th(scope='row') 7
+              td menuBackDrop
+              td false
+              td true/false
+            tr
+              th(scope='row') 8
               td menuIcon
               td null
               td '&lt;i class='fa fa-bars'&gt;&lt;/i&gt;'
