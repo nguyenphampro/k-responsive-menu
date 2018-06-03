@@ -1,10 +1,19 @@
 /*
- * Project: k-responsive-menu is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support
+ *  Name: K-Responsive-Menu
+ *  URL: https://baonguyenyam.github.io/k-responsive-menu/
+ *  Coding by: Bao Nguyen
+ *  Tel: 0.96.96.89.89.3
+ *  Email: baonguyenyam@gmail.com
+ *  URL: fb.com/pham.nguyen.bao.nguyen,
+ *  baonguyenyam.github.io
+ *  baonguyenyam.blogspot.com
+ *  Project: k-responsive-menu is a lightweight jQuery plugin to create responsive multi - level navigation menus with multi device support
  *  Author: Bao Nguyen
  *  License: MIT
  *  Website: http://baonguyenyam.github.io
  *  Version: 1.0.0
  */
+/* MENU BAR */
 .k-menu-bar {
   padding: .5rem 15px;
   display: -webkit-box;
@@ -22,6 +31,7 @@
   align-items: center;
 }
 
+/* MENU BACKDROP */
 .k-menu-backdrop {
   content: '';
   display: block;
@@ -39,6 +49,7 @@
   display: block;
 }
 
+/* BEGIN MENU */
 .k-responsive-menu > *, [k-responsive-menu] > * {
   list-style-type: none;
 }
@@ -51,6 +62,7 @@
   padding: 0 15px 0 15px;
 }
 
+/* Horizontal */
 .k-responsive-menu.k-menu-horizontal, [k-responsive-menu].k-menu-horizontal {
   padding-top: .5rem;
   padding-bottom: .5rem;
@@ -109,6 +121,89 @@
 }
 
 .k-responsive-menu.k-menu-horizontal.k-active.k-menu-push-left, [k-responsive-menu].k-menu-horizontal.k-active.k-menu-push-left {
+  padding: 0;
+  background: #f8f9fa;
+  left: -100%;
+  top: 0;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+/* Vertical */
+.k-responsive-menu.k-menu-vertical, [k-responsive-menu].k-menu-vertical {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.k-responsive-menu.k-menu-vertical .form-inline, [k-responsive-menu].k-menu-vertical .form-inline {
+  padding: 15px 0;
+}
+
+.k-responsive-menu.k-menu-vertical .dropdown-menu, [k-responsive-menu].k-menu-vertical .dropdown-menu {
+  position: static !important;
+  -webkit-transform: none !important;
+  transform: none !important;
+  float: none;
+}
+
+.k-responsive-menu.k-menu-vertical .nav, [k-responsive-menu].k-menu-vertical .nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.k-responsive-menu.k-menu-vertical .nav .nav-item .nav-link, [k-responsive-menu].k-menu-vertical .nav .nav-item .nav-link {
+  padding: .5rem 0;
+}
+
+.k-responsive-menu.k-menu-vertical.k-active, [k-responsive-menu].k-menu-vertical.k-active {
+  display: none;
+  padding: 1rem 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.k-responsive-menu.k-menu-vertical.k-active .form-inline, [k-responsive-menu].k-menu-vertical.k-active .form-inline {
+  padding: 0 15px 0 15px;
+}
+
+.k-responsive-menu.k-menu-vertical.k-active .k-menu-toggle, [k-responsive-menu].k-menu-vertical.k-active .k-menu-toggle {
+  display: block;
+}
+
+.k-responsive-menu.k-menu-vertical.k-active .nav .nav-item .nav-link, [k-responsive-menu].k-menu-vertical.k-active .nav .nav-item .nav-link {
+  padding: .5rem 1rem;
+}
+
+.k-responsive-menu.k-menu-vertical.k-active.k-menu-push-right, [k-responsive-menu].k-menu-vertical.k-active.k-menu-push-right {
+  padding: 0;
+  background: #f8f9fa;
+  right: -100%;
+  top: 0;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.k-responsive-menu.k-menu-vertical.k-active.k-menu-push-left, [k-responsive-menu].k-menu-vertical.k-active.k-menu-push-left {
   padding: 0;
   background: #f8f9fa;
   left: -100%;
