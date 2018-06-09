@@ -159,7 +159,7 @@ baonguyenyam.blogspot.com
 												step: function (now, fx) {
 													$(this).css('transform', 'translateX(-' + now + 'px)');
 												},
-												complete: function () {
+												complete: function () { 
 												}
 											});
 										} else {
@@ -169,7 +169,7 @@ baonguyenyam.blogspot.com
 													$(this).css('transform', 'translateX(-' + now + 'px)');
 												},
 												complete: function () {
-													$(this).removeAttr('style')
+													$(this).css('transform', '')
 													$(getFather).removeClass('k-expand')
 												}
 											});
@@ -228,7 +228,7 @@ baonguyenyam.blogspot.com
 													$(this).css('transform', 'translateX(' + now + 'px)');
 												},
 												complete: function () {
-													$(this).removeAttr('style')
+													$(this).css('transform', '')
 													$(getFather).removeClass('k-expand')
 												}
 											});
@@ -358,6 +358,8 @@ baonguyenyam.blogspot.com
 			})
 			$(window).resize(function () {
 				nguyenApp.doResponsiveMenu()
+				$('body').css('transform', '')
+				$('.k-responsive-menu').removeClass('k-expand')
 				plugin.onResize.call(plugin)
 				clearTimeout(nguyenApp.resizeTimer);
 				nguyenApp.resizeTimer = setTimeout(function () {

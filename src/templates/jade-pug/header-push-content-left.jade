@@ -18,10 +18,6 @@ block header
       button.k-button-toggle.navbar-toggler(k-toggle-for="#demoResAllInOneMenu") 
         i.fa.fa-bars
     #demoResAllInOneMenu.container.k-responsive-menu
-      .k-menu-bar
-        .k-logo.navbar-brand.mr-auto LOGO Menu
-        button.k-button-toggle.navbar-toggler(k-toggle-for="#demoResAllInOneMenu") 
-          i.fa.fa-close
       .k-logo.navbar-brand.mr-auto(k-menu-map-to="#logo") LOGO
       ul.nav
         li.nav-item
@@ -79,7 +75,7 @@ block body
             $('#demoResAllInOneMenu').kResponsiveMenu({
               animationSpeed: 'fast', // slow, fast, 200
               resizeWidth: 'md', // 'xs', 'sm', 'md', 'lg', 'xl', 480,
-              menuPush: 'right', // right, left
+              menuPush: 'left', // right, left
               menuPushPosition: 'fixed', // absolute
               menuPushWidth: '300px', // px, %, rem
               menuBackDrop: true,
@@ -94,7 +90,7 @@ block body
         $('#demoResAllInOneMenu').kResponsiveMenu({
           animationSpeed: 'slow', // slow, fast, 200
           resizeWidth: 'md', // 'xs', 'sm', 'md', 'lg', 'xl', 480,
-          menuPush: 'right', // right, left
+          menuPush: 'left', // right, left
           menuPushPosition: 'fixed', // absolute
           menuPushWidth: '300px', // px, %, rem
           menuBackDrop: true,
