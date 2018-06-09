@@ -107,10 +107,14 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
     <header class="bg-light">
       <div class="k-menu-bar container">
         <div id="logo" class="mr-auto"></div>
-        <button k-toggle-for="#demoResAllInOneMenu" class="k-button-toggle navbar-toggler">MENU</button>
+        <button k-toggle-for="#demoResAllInOneMenu" class="k-button-toggle navbar-toggler"> <i class="fa fa-bars"></i></button>
       </div>
       <div id="demoResAllInOneMenu" class="container k-responsive-menu">
-        <div k-menu-map-to="#logo" class="k-logo navbar-brand">LOGO</div>
+        <div class="k-menu-bar">
+          <div class="k-logo navbar-brand mr-auto">LOGO Menu</div>
+          <button k-toggle-for="#demoResAllInOneMenu" class="k-button-toggle navbar-toggler"> <i class="fa fa-close"></i></button>
+        </div>
+        <div k-menu-map-to="#logo" class="k-logo navbar-brand mr-auto">LOGO</div>
         <ul class="nav">
           <li class="nav-item"><a href="#" class="nav-link">About us</a></li>
           <li class="nav-item"><a href="#" class="nav-link">Services</a></li>
@@ -134,7 +138,11 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
     &lt;button k-toggle-for=&quot;#demoResAllInOneMenu&quot; class=&quot;k-button-toggle navbar-toggler&quot;&gt;MENU&lt;/button&gt;
   &lt;/div&gt;
   &lt;div id=&quot;demoResAllInOneMenu&quot; class=&quot;container k-responsive-menu&quot;&gt;
-    &lt;div k-menu-map-to=&quot;#logo&quot; class=&quot;k-logo navbar-brand&quot;&gt;LOGO&lt;/div&gt;
+    &lt;div class=&quot;k-menu-bar&quot;&gt;
+      &lt;div class=&quot;k-logo navbar-brand mr-auto&quot;&gt;LOGO Menu&lt;/div&gt;
+      &lt;button k-toggle-for=&quot;#demoResAllInOneMenu&quot; class=&quot;k-button-toggle navbar-toggler&quot;&gt;MENU&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div k-menu-map-to=&quot;#logo&quot; class=&quot;k-logo navbar-brand mr-auto&quot;&gt;LOGO&lt;/div&gt;
     &lt;ul class=&quot;nav&quot;&gt;
       &lt;li class=&quot;nav-item&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;nav-link&quot;&gt;About us&lt;/a&gt;&lt;/li&gt;
       &lt;li class=&quot;nav-item&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;nav-link&quot;&gt;Services&lt;/a&gt;&lt;/li&gt;
@@ -152,12 +160,13 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
           <h3 style="margin:2rem 0">JS</h3>
           <pre class="prettyprint lang-js">$(document).ready(function() {
   $('#demoResAllInOneMenu').kResponsiveMenu({
-    animationSpeed: 'slow', // slow, fast, 200
-    resizeWidth: 800, // 'xs', 'sm', 'md', 'lg', 'xl', 480,
-    menuIcon: '&lt;i class=&quot;fa fa-bars&quot;&gt;&lt;/i&gt;',
-    menuPush: 'left',
-    menuPushWidth: '300px',
-    menuBackDrop: true
+    animationSpeed: 'fast', // slow, fast, 200
+    resizeWidth: 'md', // 'xs', 'sm', 'md', 'lg', 'xl', 480,
+    menuPush: 'right', // right, left
+    menuPushPosition: 'fixed', // absolute
+    menuPushWidth: '300px', // px, %, rem
+    menuBackDrop: true,
+    menuFloat: false
   });
 });
 </pre>
@@ -169,11 +178,12 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
       $(document).ready(function() {
          $('#demoResAllInOneMenu').kResponsiveMenu({
            animationSpeed: 'slow', // slow, fast, 200
-           resizeWidth: 800, // 'xs', 'sm', 'md', 'lg', 'xl', 480,
-           menuIcon: '<i class="fa fa-bars"></i>',
-           menuPush: 'left',
-           menuPushWidth: '300px',
-           menuBackDrop: true
+           resizeWidth: 'md', // 'xs', 'sm', 'md', 'lg', 'xl', 480,
+           menuPush: 'right', // right, left
+           menuPushPosition: 'fixed', // absolute
+           menuPushWidth: '300px', // px, %, rem
+           menuBackDrop: true,
+           menuFloat: false
          });
        });
     </script>
