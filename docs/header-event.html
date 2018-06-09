@@ -107,10 +107,14 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
     <header class="bg-light">
       <div class="k-menu-bar container">
         <div id="logo" class="mr-auto"></div>
-        <button k-toggle-for="#demoResAllInOneMenu" class="k-button-toggle navbar-toggler">MENU</button>
+        <button k-toggle-for="#demoResAllInOneMenu" class="k-button-toggle navbar-toggler"> <i class="fa fa-bars"></i></button>
       </div>
       <div id="demoResAllInOneMenu" class="container k-responsive-menu">
-        <div k-menu-map-to="#logo" class="k-logo navbar-brand">LOGO</div>
+        <div class="k-menu-bar">
+          <div class="k-logo navbar-brand mr-auto">LOGO Menu</div>
+          <button k-toggle-for="#demoResAllInOneMenu" class="k-button-toggle navbar-toggler"> <i class="fa fa-close"></i></button>
+        </div>
+        <div k-menu-map-to="#logo" class="k-logo navbar-brand mr-auto">LOGO</div>
         <ul class="nav">
           <li class="nav-item"><a href="#" class="nav-link">About us</a></li>
           <li class="nav-item"><a href="#" class="nav-link">Services</a></li>
@@ -126,38 +130,45 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
     </header>
     <div class="container">
       <div class="row">
-        <div class="col">
-          <h3 style="margin:2rem 0">HTML</h3>
-          <pre class="prettyprint lang-html">&lt;header class=&quot;bg-light&quot;&gt;
-  &lt;div class=&quot;k-menu-bar container&quot;&gt;
-    &lt;div id=&quot;logo&quot; class=&quot;mr-auto&quot;&gt;&lt;/div&gt;
-    &lt;button k-toggle-for=&quot;#demoResAllInOneMenu&quot; class=&quot;k-button-toggle navbar-toggler&quot;&gt;MENU&lt;/button&gt;
-  &lt;/div&gt;
-  &lt;div id=&quot;demoResAllInOneMenu&quot; class=&quot;container k-responsive-menu&quot;&gt;
-    &lt;div k-menu-map-to=&quot;#logo&quot; class=&quot;k-logo navbar-brand&quot;&gt;LOGO&lt;/div&gt;
-    &lt;ul class=&quot;nav&quot;&gt;
-      &lt;li class=&quot;nav-item&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;nav-link&quot;&gt;About us&lt;/a&gt;&lt;/li&gt;
-      &lt;li class=&quot;nav-item&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;nav-link&quot;&gt;Services&lt;/a&gt;&lt;/li&gt;
-      &lt;li class=&quot;nav-item dropdown&quot;&gt;&lt;a id=&quot;navbarDropdown&quot; href=&quot;#&quot; role=&quot;button&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot; class=&quot;nav-link dropdown-toggle&quot;&gt;Dropdown&lt;/a&gt;
-        &lt;div aria-labelledby=&quot;navbarDropdown&quot; class=&quot;dropdown-menu&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;dropdown-item&quot;&gt;Action&lt;/a&gt;&lt;a href=&quot;#&quot; class=&quot;dropdown-item&quot;&gt;Another action&lt;/a&gt;
-          &lt;div class=&quot;dropdown-divider&quot;&gt;&lt;/div&gt;&lt;a href=&quot;#&quot; class=&quot;dropdown-item&quot;&gt;Something else here&lt;/a&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li class=&quot;nav-item&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;nav-link&quot;&gt;Shop&lt;/a&gt;&lt;/li&gt;
-      &lt;li class=&quot;nav-item&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;nav-link&quot;&gt;Contact us&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-&lt;/header&gt;
-</pre>
+        <div class="col-lg">
+          <h3 style="margin:2rem 0">EVENT</h3>
+          <div class="events"></div>
+        </div>
+        <div class="col-lg">
           <h3 style="margin:2rem 0">JS</h3>
           <pre class="prettyprint lang-js">$(document).ready(function() {
   $('#demoResAllInOneMenu').kResponsiveMenu({
-    animationSpeed: 'slow', // slow, fast, 200
-    resizeWidth: 800, // 'xs', 'sm', 'md', 'lg', 'xl', 480,
-    menuIcon: '&lt;i class=&quot;fa fa-bars&quot;&gt;&lt;/i&gt;',
-    menuPush: 'left',
-    menuPushWidth: '300px',
-    menuBackDrop: true
+    animationSpeed: 'fast', // slow, fast, 200
+    resizeWidth: 'md', // 'xs', 'sm', 'md', 'lg', 'xl', 480,
+    menuPush: 'right', // right, left
+    menuPushPosition: 'fixed', // absolute
+    menuPushWidth: '300px', // px, %, rem
+    menuBackDrop: false,
+    menuFloat: false,
+    onComplete: function () {
+      console.log('Finished Init')
+    },
+    onResize: function () {
+      console.log('Resize')
+    },
+    onResizeEnd: function () {
+      console.log('Resize Finished')
+    },
+    onClick: function () {
+      console.log('Clicked')
+    },
+    onHover: function () {
+      console.log('Mouse enter')
+    },
+    unHover: function () {
+      console.log('Mouse leave')
+    },
+    onBegin: function () {
+      console.log('Begin')
+    },
+    onChange: function () {
+      console.log('Done')
+    }
   });
 });
 </pre>
@@ -169,11 +180,44 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
       $(document).ready(function() {
          $('#demoResAllInOneMenu').kResponsiveMenu({
            animationSpeed: 'slow', // slow, fast, 200
-           resizeWidth: 800, // 'xs', 'sm', 'md', 'lg', 'xl', 480,
-           menuIcon: '<i class="fa fa-bars"></i>',
-           menuPush: 'left',
-           menuPushWidth: '300px',
-           menuBackDrop: true
+           resizeWidth: 'md', // 'xs', 'sm', 'md', 'lg', 'xl', 480,
+           menuPush: 'right', // right, left
+           menuPushPosition: 'fixed', // absolute
+           menuPushWidth: '300px', // px, %, rem
+           menuBackDrop: false,
+           menuFloat: false,
+           onComplete: function () {
+             console.log('Finished Init')
+             $('.events').prepend('<p>Finished Init</p>')
+           },
+           onResize: function () {
+             console.log('Resize')
+             $('.events').prepend('<p>Resize</p>')
+           },
+           onResizeEnd: function () {
+             console.log('Resize Finished')
+             $('.events').prepend('<p>Resize Finished</p>')
+           },
+           onClick: function () {
+             console.log('Clicked')
+             $('.events').prepend('<p>Clicked</p>')
+           },
+           onHover: function () {
+             console.log('Mouse enter')
+             $('.events').prepend('<p>Mouse enter</p>')
+           },
+           unHover: function () {
+             console.log('Mouse leave')
+             $('.events').prepend('<p>Mouse leave</p>')
+           },
+           onBegin: function () {
+             console.log('Begin')
+             $('.events').prepend('<p>Begin</p>')
+           },
+           onChange: function () {
+             console.log('Done')
+             $('.events').prepend('<p>Done</p>')
+           }
          });
        });
     </script>

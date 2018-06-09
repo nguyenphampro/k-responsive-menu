@@ -29,6 +29,14 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  display: none;
+}
+
+.k-menu-bar.active {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 /* MENU BACKDROP */
@@ -40,9 +48,9 @@
   position: fixed;
   background: rgba(0, 0, 0, 0.8);
   top: 0;
-  left: 0;
-  z-index: 999;
+  z-index: 9999;
   display: none;
+  cursor: pointer;
 }
 
 .k-menu-backdrop.active {
@@ -50,11 +58,24 @@
 }
 
 /* BEGIN MENU */
+.k-responsive-menu, [k-responsive-menu] {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 .k-responsive-menu > *, [k-responsive-menu] > * {
   list-style-type: none;
 }
 
-.k-responsive-menu .k-menu-toggle, [k-responsive-menu] .k-menu-toggle {
+.k-responsive-menu .k-button-toggle, [k-responsive-menu] .k-button-toggle {
   display: none;
 }
 
@@ -62,27 +83,8 @@
   padding: 0 15px 0 15px;
 }
 
-/* Horizontal */
-.k-responsive-menu.k-menu-horizontal, [k-responsive-menu].k-menu-horizontal {
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.k-responsive-menu.k-menu-horizontal.k-active, [k-responsive-menu].k-menu-horizontal.k-active {
-  display: none;
+/* Toggle */
+.k-responsive-menu.k-menu-toggle.k-active-mobile, [k-responsive-menu].k-menu-toggle.k-active-mobile {
   padding: 1rem 0;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -90,20 +92,25 @@
   -ms-flex-direction: column;
   flex-direction: column;
   z-index: 1000;
+  display: none;
 }
 
-.k-responsive-menu.k-menu-horizontal.k-active .dropdown-menu, [k-responsive-menu].k-menu-horizontal.k-active .dropdown-menu {
+.k-responsive-menu.k-menu-toggle.k-active-mobile.k-expand, [k-responsive-menu].k-menu-toggle.k-active-mobile.k-expand {
+  display: block;
+}
+
+.k-responsive-menu.k-menu-toggle.k-active-mobile .dropdown-menu, [k-responsive-menu].k-menu-toggle.k-active-mobile .dropdown-menu {
   position: static !important;
   -webkit-transform: none !important;
   transform: none !important;
   float: none;
 }
 
-.k-responsive-menu.k-menu-horizontal.k-active .k-menu-toggle, [k-responsive-menu].k-menu-horizontal.k-active .k-menu-toggle {
+.k-responsive-menu.k-menu-toggle.k-active-mobile .k-button-toggle, [k-responsive-menu].k-menu-toggle.k-active-mobile .k-button-toggle {
   display: block;
 }
 
-.k-responsive-menu.k-menu-horizontal.k-active .nav, [k-responsive-menu].k-menu-horizontal.k-active .nav {
+.k-responsive-menu.k-menu-toggle.k-active-mobile .nav, [k-responsive-menu].k-menu-toggle.k-active-mobile .nav {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -111,18 +118,67 @@
   flex-direction: column;
 }
 
-.k-responsive-menu.k-menu-horizontal.k-active.k-menu-push-right, [k-responsive-menu].k-menu-horizontal.k-active.k-menu-push-right {
+.k-responsive-menu.k-menu-toggle.k-active-mobile.k-menu-push-right, [k-responsive-menu].k-menu-toggle.k-active-mobile.k-menu-push-right {
   padding: 0;
-  background: #f8f9fa;
   right: -100%;
   top: 0;
   height: 100%;
   overflow-y: scroll;
 }
 
-.k-responsive-menu.k-menu-horizontal.k-active.k-menu-push-left, [k-responsive-menu].k-menu-horizontal.k-active.k-menu-push-left {
+.k-responsive-menu.k-menu-toggle.k-active-mobile.k-menu-push-left, [k-responsive-menu].k-menu-toggle.k-active-mobile.k-menu-push-left {
   padding: 0;
-  background: #f8f9fa;
+  left: -100%;
+  top: 0;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+/* Horizontal */
+.k-responsive-menu.k-menu-horizontal.k-active-mobile, [k-responsive-menu].k-menu-horizontal.k-active-mobile {
+  padding: 1rem 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  z-index: 1000;
+  display: none;
+}
+
+.k-responsive-menu.k-menu-horizontal.k-active-mobile.k-expand, [k-responsive-menu].k-menu-horizontal.k-active-mobile.k-expand {
+  display: block;
+}
+
+.k-responsive-menu.k-menu-horizontal.k-active-mobile .dropdown-menu, [k-responsive-menu].k-menu-horizontal.k-active-mobile .dropdown-menu {
+  position: static !important;
+  -webkit-transform: none !important;
+  transform: none !important;
+  float: none;
+}
+
+.k-responsive-menu.k-menu-horizontal.k-active-mobile .k-button-toggle, [k-responsive-menu].k-menu-horizontal.k-active-mobile .k-button-toggle {
+  display: block;
+}
+
+.k-responsive-menu.k-menu-horizontal.k-active-mobile .nav, [k-responsive-menu].k-menu-horizontal.k-active-mobile .nav {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.k-responsive-menu.k-menu-horizontal.k-active-mobile.k-menu-push-right, [k-responsive-menu].k-menu-horizontal.k-active-mobile.k-menu-push-right {
+  padding: 0;
+  right: -100%;
+  top: 0;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.k-responsive-menu.k-menu-horizontal.k-active-mobile.k-menu-push-left, [k-responsive-menu].k-menu-horizontal.k-active-mobile.k-menu-push-left {
+  padding: 0;
   left: -100%;
   top: 0;
   height: 100%;
@@ -133,10 +189,7 @@
 .k-responsive-menu.k-menu-vertical, [k-responsive-menu].k-menu-vertical {
   padding-top: .5rem;
   padding-bottom: .5rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: block;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -171,7 +224,7 @@
   padding: .5rem 0;
 }
 
-.k-responsive-menu.k-menu-vertical.k-active, [k-responsive-menu].k-menu-vertical.k-active {
+.k-responsive-menu.k-menu-vertical.k-active-mobile, [k-responsive-menu].k-menu-vertical.k-active-mobile {
   display: none;
   padding: 1rem 0;
   -webkit-box-orient: vertical;
@@ -182,30 +235,32 @@
   z-index: 1000;
 }
 
-.k-responsive-menu.k-menu-vertical.k-active .form-inline, [k-responsive-menu].k-menu-vertical.k-active .form-inline {
-  padding: 0 15px 0 15px;
-}
-
-.k-responsive-menu.k-menu-vertical.k-active .k-menu-toggle, [k-responsive-menu].k-menu-vertical.k-active .k-menu-toggle {
+.k-responsive-menu.k-menu-vertical.k-active-mobile.k-expand, [k-responsive-menu].k-menu-vertical.k-active-mobile.k-expand {
   display: block;
 }
 
-.k-responsive-menu.k-menu-vertical.k-active .nav .nav-item .nav-link, [k-responsive-menu].k-menu-vertical.k-active .nav .nav-item .nav-link {
+.k-responsive-menu.k-menu-vertical.k-active-mobile .form-inline, [k-responsive-menu].k-menu-vertical.k-active-mobile .form-inline {
+  padding: 0 15px 0 15px;
+}
+
+.k-responsive-menu.k-menu-vertical.k-active-mobile .k-button-toggle, [k-responsive-menu].k-menu-vertical.k-active-mobile .k-button-toggle {
+  display: block;
+}
+
+.k-responsive-menu.k-menu-vertical.k-active-mobile .nav .nav-item .nav-link, [k-responsive-menu].k-menu-vertical.k-active-mobile .nav .nav-item .nav-link {
   padding: .5rem 1rem;
 }
 
-.k-responsive-menu.k-menu-vertical.k-active.k-menu-push-right, [k-responsive-menu].k-menu-vertical.k-active.k-menu-push-right {
+.k-responsive-menu.k-menu-vertical.k-active-mobile.k-menu-push-right, [k-responsive-menu].k-menu-vertical.k-active-mobile.k-menu-push-right {
   padding: 0;
-  background: #f8f9fa;
   right: -100%;
   top: 0;
   height: 100%;
   overflow-y: scroll;
 }
 
-.k-responsive-menu.k-menu-vertical.k-active.k-menu-push-left, [k-responsive-menu].k-menu-vertical.k-active.k-menu-push-left {
+.k-responsive-menu.k-menu-vertical.k-active-mobile.k-menu-push-left, [k-responsive-menu].k-menu-vertical.k-active-mobile.k-menu-push-left {
   padding: 0;
-  background: #f8f9fa;
   left: -100%;
   top: 0;
   height: 100%;

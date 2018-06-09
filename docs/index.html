@@ -178,6 +178,14 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
             <dd class="col-sm-9">Push right menu</dd>
           </dl>
           <dl class="row">
+            <dt class="col-sm-3"> <a href="./header-push-content-left.html" class="btn btn-primary">Push Left + Pull Main</a></dt>
+            <dd class="col-sm-9">Push left menu and pull main tag</dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-3"> <a href="./header-push-content-right.html" class="btn btn-primary">Push Right + Pull Main</a></dt>
+            <dd class="col-sm-9">Push right menu and pull main tag</dd>
+          </dl>
+          <dl class="row">
             <dt class="col-sm-3"> <a href="./header-map-to.html" class="btn btn-primary">Map to</a></dt>
             <dd class="col-sm-9">Menu Map</dd>
           </dl>
@@ -210,18 +218,21 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
   $('#demoResAllInOneMenu').kResponsiveMenu({
     animationSpeed: 'slow', 
     resizeWidth: 768, 
-    menuType: 'horizontal',
+    menuType: 'toggle',
+    menuFloat: false,
     menuPush: null,
     menuPushPosition: 'absolute', 
     menuPushWidth: '100%',
     menuBackDrop: false, 
     menuIcon: null, 
-    onResize: null,
     onComplete: null,
-    onChange: null,
+    onResize: null,
+    onResizeEnd: null,
     onClick: null,
+    onHover: null,
+    unHover: null,
     onBegin: null,
-    onHover: null
+    onChange: null
   });
 });</pre>
           <h5 class="h5 mt-4">Value</h5>
@@ -237,50 +248,56 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
             <tbody>
               <tr>
                 <th scope="row">1</th>
-                <td>animationSpeed</td>
-                <td>'slow'</td>
+                <td><strong>animationSpeed</strong></td>
+                <td><code>'slow'</code></td>
                 <td>'slow', 'fast', 200...</td>
               </tr>
               <tr>
                 <th scope="row">2</th>
-                <td>resizeWidth</td>
-                <td>768</td>
+                <td><strong>resizeWidth</strong></td>
+                <td><code>768</code></td>
                 <td>'xs', 'sm', 'md', 'lg', 'xl', 480...</td>
               </tr>
               <tr>
                 <th scope="row">3</th>
-                <td>menuType</td>
-                <td>'horizontal'</td>
-                <td>'horizontal', 'vertical'</td>
+                <td><strong>menuType</strong></td>
+                <td><code>'toggle'</code></td>
+                <td>'horizontal', 'vertical', 'toggle'</td>
               </tr>
               <tr>
                 <th scope="row">4</th>
-                <td>menuPush</td>
-                <td>null</td>
-                <td>'right', 'left'</td>
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td>menuPushPosition</td>
-                <td>'absolute'</td>
-                <td>'fixed'</td>
-              </tr>
-              <tr>
-                <th scope="row">6</th>
-                <td>menuPushWidth</td>
-                <td>'100%'</td>
-                <td>'px', '%', 'rem'</td>
-              </tr>
-              <tr>
-                <th scope="row">7</th>
-                <td>menuBackDrop</td>
-                <td>false</td>
+                <td><strong>menuFloat</strong></td>
+                <td><code>false</code></td>
                 <td>true/false</td>
               </tr>
               <tr>
+                <th scope="row">5</th>
+                <td><strong>menuPush</strong></td>
+                <td><code>null</code></td>
+                <td>'right', 'left'</td>
+              </tr>
+              <tr>
+                <th scope="row">6</th>
+                <td><strong>menuPushPosition</strong></td>
+                <td><code>'absolute'</code></td>
+                <td>'fixed'</td>
+              </tr>
+              <tr>
+                <th scope="row">7</th>
+                <td><strong>menuPushWidth</strong></td>
+                <td><code>'100%'</code></td>
+                <td>'px', '%', 'rem'</td>
+              </tr>
+              <tr>
                 <th scope="row">8</th>
-                <td>menuIcon</td>
-                <td>null</td>
+                <td><strong>menuBackDrop</strong></td>
+                <td><code>false</code></td>
+                <td>true/false</td>
+              </tr>
+              <tr>
+                <th scope="row">9</th>
+                <td><strong>menuIcon</strong></td>
+                <td><code>null</code></td>
                 <td>'&lt;i class='fa fa-bars'&gt;&lt;/i&gt;'</td>
               </tr>
             </tbody>
@@ -298,9 +315,11 @@ Demo Web-App: http://baonguyenyam.herokuapp.com/
             <tbody>
               <tr>
                 <th scope="row">1</th>
-                <td>onResize<br>onComplete<br>onChange<br>onClick<br>onBegin<br>onHover...</td>
+                <td>onComplete <br>onResize <br>onResizeEnd <br>onClick <br>onHover <br>unHover <br>onBegin <br>onChange</td>
                 <td>null</td>
-                <td>onResize: function () {}</td>
+                <td>onResize: function () {}
+                  <p> <a href="./header-event.html" title="title">View details </a></p>
+                </td>
               </tr>
             </tbody>
           </table>
