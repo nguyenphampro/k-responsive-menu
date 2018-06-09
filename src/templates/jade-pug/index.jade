@@ -161,18 +161,21 @@ block body
             $('#demoResAllInOneMenu').kResponsiveMenu({
               animationSpeed: 'slow', 
               resizeWidth: 768, 
-              menuType: 'horizontal',
+              menuType: 'toggle',
+              menuFloat: false,
               menuPush: null,
               menuPushPosition: 'absolute', 
               menuPushWidth: '100%',
               menuBackDrop: false, 
               menuIcon: null, 
-              onResize: null,
               onComplete: null,
-              onChange: null,
+              onResize: null,
+              onResizeEnd: null,
               onClick: null,
+              onHover: null,
+              unHover: null,
               onBegin: null,
-              onHover: null
+              onChange: null
             });
           });
         h5.h5.mt-4 Value
@@ -186,48 +189,66 @@ block body
           tbody
             tr
               th(scope='row') 1
-              td animationSpeed
-              td 'slow'
+              td
+                strong animationSpeed
+              td
+                code 'slow'
               td 'slow', 'fast', 200...
             tr
               th(scope='row') 2
-              td resizeWidth
-              td 768
+              td
+                strong resizeWidth
+              td
+                code 768
               td 'xs', 'sm', 'md', 'lg', 'xl', 480...
             tr
               th(scope='row') 3
-              td menuType
-              td 'toggle'
+              td
+                strong menuType
+              td
+                code 'toggle'
               td 'horizontal', 'vertical', 'toggle'
             tr
               th(scope='row') 4
-              td menuPush
-              td null
-              td 'right', 'left'
-            tr
-              th(scope='row') 5
-              td menuPushPosition
-              td 'absolute'
-              td 'fixed'
-            tr
-              th(scope='row') 6
-              td menuPushWidth
-              td '100%'
-              td 'px', '%', 'rem'
-            tr
-              th(scope='row') 7
-              td menuBackDrop
-              td false
+              td
+                strong menuFloat
+              td
+                code false
               td true/false
             tr
+              th(scope='row') 5
+              td
+                strong menuPush
+              td
+                code null
+              td 'right', 'left'
+            tr
+              th(scope='row') 6
+              td
+                strong menuPushPosition
+              td
+                code 'absolute'
+              td 'fixed'
+            tr
+              th(scope='row') 7
+              td
+                strong menuPushWidth
+              td
+                code '100%'
+              td 'px', '%', 'rem'
+            tr
               th(scope='row') 8
-              td menuFloat
-              td true
+              td
+                strong menuBackDrop
+              td
+                code false
               td true/false
             tr
               th(scope='row') 9
-              td menuIcon
-              td null
+              td
+                strong menuIcon
+              td
+                code null
               td '&lt;i class='fa fa-bars'&gt;&lt;/i&gt;'
         h5.h5.mt-4 Events
         table.table.table-bordered
@@ -240,19 +261,26 @@ block body
           tbody
             tr
               th(scope='row') 1
-              td onResize
-                br 
-                | onComplete
-                br 
+              td
+                | onComplete 
+                br
+                | onResize 
+                br
+                | onResizeEnd 
+                br
+                | onClick 
+                br
+                | onHover 
+                br
+                | unHover 
+                br
+                | onBegin 
+                br
                 | onChange
-                br 
-                | onClick
-                br 
-                | onBegin
-                br 
-                | onHover...
               td null
               td onResize: function () {}
+                p 
+                  a(href="./header-event.html", title="title") View details 
         h5.h5.mt-4 Default Attribute
         .border.p-3.bg-light.mb-5
           dl.row

@@ -1,0 +1,134 @@
+extends _layout/layout
+
+block variables
+  - var title = 'K-Responsive-Menu'
+  - var bodyclass = 'index'
+
+block css
+  link(rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css")
+  link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+  link(rel="stylesheet" type="text/css" href="./css/k-responsive-menu.css")
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js')
+  script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js')
+
+block header 
+  header.bg-light
+    .k-menu-bar.container
+      #logo.mr-auto
+      button.k-button-toggle.navbar-toggler(k-toggle-for="#demoResAllInOneMenu") 
+        i.fa.fa-bars
+    #demoResAllInOneMenu.container.k-responsive-menu
+      .k-menu-bar
+        .k-logo.navbar-brand.mr-auto LOGO Menu
+        button.k-button-toggle.navbar-toggler(k-toggle-for="#demoResAllInOneMenu") 
+          i.fa.fa-close
+      .k-logo.navbar-brand.mr-auto(k-menu-map-to="#logo") LOGO
+      ul.nav
+        li.nav-item
+          a.nav-link(href='#') About us
+        li.nav-item
+          a.nav-link(href='#') Services
+        li.nav-item.dropdown
+          a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            | Dropdown
+          .dropdown-menu(aria-labelledby='navbarDropdown')
+            a.dropdown-item(href='#') Action
+            a.dropdown-item(href='#') Another action
+            .dropdown-divider
+            a.dropdown-item(href='#') Something else here
+        li.nav-item
+          a.nav-link(href='#') Shop
+        li.nav-item
+          a.nav-link(href='#') Contact us
+block body 
+  .container
+    .row
+      .col-lg
+        h3(style="margin:2rem 0;") EVENT
+        .events
+      .col-lg
+        h3(style="margin:2rem 0;") JS
+        
+        pre.prettyprint.lang-js.
+          $(document).ready(function() {
+            $('#demoResAllInOneMenu').kResponsiveMenu({
+              animationSpeed: 'fast', // slow, fast, 200
+              resizeWidth: 'md', // 'xs', 'sm', 'md', 'lg', 'xl', 480,
+              menuPush: 'right', // right, left
+              menuPushPosition: 'fixed', // absolute
+              menuPushWidth: '300px', // px, %, rem
+              menuBackDrop: false,
+              menuFloat: false,
+              onComplete: function () {
+                console.log('Finished Init')
+              },
+              onResize: function () {
+                console.log('Resize')
+              },
+              onResizeEnd: function () {
+                console.log('Resize Finished')
+              },
+              onClick: function () {
+                console.log('Clicked')
+              },
+              onHover: function () {
+                console.log('Mouse enter')
+              },
+              unHover: function () {
+                console.log('Mouse leave')
+              },
+              onBegin: function () {
+                console.log('Begin')
+              },
+              onChange: function () {
+                console.log('Done')
+              }
+            });
+          });
+
+    
+  script(src='https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js')
+  script.
+     $(document).ready(function() {
+        $('#demoResAllInOneMenu').kResponsiveMenu({
+          animationSpeed: 'slow', // slow, fast, 200
+          resizeWidth: 'md', // 'xs', 'sm', 'md', 'lg', 'xl', 480,
+          menuPush: 'right', // right, left
+          menuPushPosition: 'fixed', // absolute
+          menuPushWidth: '300px', // px, %, rem
+          menuBackDrop: false,
+          menuFloat: false,
+          onComplete: function () {
+            console.log('Finished Init')
+            $('.events').prepend('<p>Finished Init</p>')
+          },
+          onResize: function () {
+            console.log('Resize')
+            $('.events').prepend('<p>Resize</p>')
+          },
+          onResizeEnd: function () {
+            console.log('Resize Finished')
+            $('.events').prepend('<p>Resize Finished</p>')
+          },
+          onClick: function () {
+            console.log('Clicked')
+            $('.events').prepend('<p>Clicked</p>')
+          },
+          onHover: function () {
+            console.log('Mouse enter')
+            $('.events').prepend('<p>Mouse enter</p>')
+          },
+          unHover: function () {
+            console.log('Mouse leave')
+            $('.events').prepend('<p>Mouse leave</p>')
+          },
+          onBegin: function () {
+            console.log('Begin')
+            $('.events').prepend('<p>Begin</p>')
+          },
+          onChange: function () {
+            console.log('Done')
+            $('.events').prepend('<p>Done</p>')
+          }
+        });
+      });

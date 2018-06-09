@@ -40,8 +40,9 @@ baonguyenyam.blogspot.com
 			this.onComplete()
 		},
 		destroy: function () {
-			this.unbindEvents()
-			this.element.removeData()
+			this.element = $(this.element)
+			$(this.element).off('kResponsiveMenu_' + this._name)
+			$(this.element).removeData('kResponsiveMenu_' + this._name);
 		},
 
 		bindEvents: function () {
@@ -132,6 +133,7 @@ baonguyenyam.blogspot.com
 						$e.addClass('k-menu-push-' + this.doMenuPush())
 					}
 					$('.k-button-toggle').on('click', function (event) {
+						plugin.onBegin.call(plugin)
 						event.preventDefault();
 						var el = $(this)
 						var getFather = $(this).attr('k-toggle-for')
@@ -144,7 +146,7 @@ baonguyenyam.blogspot.com
 							switchMenu(getFather, toggle, el)
 							toggle = 1;
 						}
-
+						plugin.onChange.call(plugin)
 					});
 					var switchMenu = function (getFather, toggle, el) {
 						if (__type == 3 || __type == 2) {
@@ -159,7 +161,7 @@ baonguyenyam.blogspot.com
 												step: function (now, fx) {
 													$(this).css('transform', 'translateX(-' + now + 'px)');
 												},
-												complete: function () { 
+												complete: function () {
 												}
 											});
 										} else {
@@ -365,11 +367,8 @@ baonguyenyam.blogspot.com
 				nguyenApp.resizeTimer = setTimeout(function () {
 					plugin.onResizeEnd.call(plugin)
 				}, 200);
+				plugin.onChange.call(plugin)
 			})
-		},
-
-		unbindEvents: function () {
-			this.element.off('.' + this._name)
 		},
 
 		onResize: function () {
@@ -388,7 +387,6 @@ baonguyenyam.blogspot.com
 
 		onClick: function () {
 			var onClick = this.options.onClick
-
 			if (typeof onClick === 'function') {
 				onClick.call(this.element)
 			}
@@ -412,13 +410,13 @@ baonguyenyam.blogspot.com
 
 		onBegin: function () {
 			var onBegin = this.options.onBegin
-
 			if (typeof onBegin === 'function') {
 				onBegin.call(this.element)
 			}
 		},
 
 		onComplete: function () {
+			$(window).trigger('resize')
 			var onComplete = this.options.onComplete
 
 			if (typeof onComplete === 'function') {
@@ -428,7 +426,6 @@ baonguyenyam.blogspot.com
 
 		onChange: function () {
 			var onChange = this.options.onChange
-
 			if (typeof onChange === 'function') {
 				onChange.call(this.element)
 			}
@@ -436,13 +433,6 @@ baonguyenyam.blogspot.com
 
 	})
 
-	// Click Toggle
-	$.fn.clickToggle = function (a, b) {
-		function cb() {
-			[b, a][this._tog ^= 1].call(this)
-		}
-		return this.on('click', cb)
-	}
 	// Build MENU
 
 	$.fn.kResponsiveMenu = function (options) {
@@ -454,6 +444,9 @@ baonguyenyam.blogspot.com
 		return this
 	}
 
+	$.fn.kResponsiveMenu.destroy = function () {
+		kaGlobal.prototype.destroy()
+	}
 
 	$.fn.kResponsiveMenu.defaults = {
 		animationSpeed: 'slow', // slow, fast, 200
