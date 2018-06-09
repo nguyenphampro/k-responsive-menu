@@ -41,7 +41,7 @@ $(document).ready(function() {
 <header class="bg-light">
   <div class="k-menu-bar container">
     <div id="logo" class="mr-auto"></div>
-    <button k-toggle-for="#demoResAllInOneMenu" class="k-menu-toggle navbar-toggler">MENU</button>
+    <button k-toggle-for="#demoResAllInOneMenu" class="k-button-toggle navbar-toggler">MENU</button>
   </div>
   <div id="demoResAllInOneMenu" class="container">
     <div k-menu-map-to="#logo" class="k-logo navbar-brand">LOGO</div>
