@@ -15,12 +15,12 @@ block header
   header.bg-light
     .k-menu-bar.container
       #logo.mr-auto
-      button.k-menu-toggle.navbar-toggler(k-toggle-for="#demoResAllInOneMenu") 
+      button.k-button-toggle.navbar-toggler(k-toggle-for="#demoResAllInOneMenu") 
         i.fa.fa-bars
-    #demoResAllInOneMenu.container
+    #demoResAllInOneMenu.container.k-responsive-menu
       .k-menu-bar
         .k-logo.navbar-brand.mr-auto LOGO Menu
-        button.k-menu-toggle.navbar-toggler(k-toggle-for="#demoResAllInOneMenu") 
+        button.k-button-toggle.navbar-toggler(k-toggle-for="#demoResAllInOneMenu") 
           i.fa.fa-close
       .k-logo.navbar-brand.mr-auto(k-menu-map-to="#logo") LOGO
       ul.nav
@@ -50,12 +50,12 @@ block body
           &lt;header class=&quot;bg-light&quot;&gt;
             &lt;div class=&quot;k-menu-bar container&quot;&gt;
               &lt;div id=&quot;logo&quot; class=&quot;mr-auto&quot;&gt;&lt;/div&gt;
-              &lt;button k-toggle-for=&quot;#demoResAllInOneMenu&quot; class=&quot;k-menu-toggle navbar-toggler&quot;&gt;MENU&lt;/button&gt;
+              &lt;button k-toggle-for=&quot;#demoResAllInOneMenu&quot; class=&quot;k-button-toggle navbar-toggler&quot;&gt;MENU&lt;/button&gt;
             &lt;/div&gt;
-            &lt;div id=&quot;demoResAllInOneMenu&quot; class=&quot;container&quot;&gt;
+            &lt;div id=&quot;demoResAllInOneMenu&quot; class=&quot;container k-responsive-menu&quot;&gt;
               &lt;div class=&quot;k-menu-bar&quot;&gt;
                 &lt;div class=&quot;k-logo navbar-brand mr-auto&quot;&gt;LOGO Menu&lt;/div&gt;
-                &lt;button k-toggle-for=&quot;#demoResAllInOneMenu&quot; class=&quot;k-menu-toggle navbar-toggler&quot;&gt;MENU&lt;/button&gt;
+                &lt;button k-toggle-for=&quot;#demoResAllInOneMenu&quot; class=&quot;k-button-toggle navbar-toggler&quot;&gt;MENU&lt;/button&gt;
               &lt;/div&gt;
               &lt;div k-menu-map-to=&quot;#logo&quot; class=&quot;k-logo navbar-brand mr-auto&quot;&gt;LOGO&lt;/div&gt;
               &lt;ul class=&quot;nav&quot;&gt;

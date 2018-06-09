@@ -47,7 +47,7 @@ baonguyenyam.blogspot.com
         bindEvents: function () {
             var plugin = this
             this.element = $(this.element)
-            var $e, $o, $d, $i, $p, $pw, $pp, $sl, $bd, toggle = 0, 
+            var $e, $o, $d, $i, $p, $pw, $pp, $sl, $bd, toggle = 0,
                 getAttr = this.element.attr('k-responsive-menu')
             if (getAttr && getAttr.length > 0) {
                 // Khai báo bởi Attr
@@ -76,12 +76,21 @@ baonguyenyam.blogspot.com
             $e.addClass('k-responsive-menu')
             $e.addClass('k-menu-' + $d)
 
-            // DO MENU 
+            // DO MENU
             var nguyenApp = {
                 resizeTimer: null,
                 doBackDrop: function () {
-                    if (!$bd) {} else {
-                        $('body').append('<div class="k-menu-backdrop"></div>');
+                    if (!$bd) { } else {
+                        $($e).append('<div class="k-menu-backdrop"></div>');
+                        if (this.doMenuPush() === 'left') {
+                            $('.k-menu-backdrop').css({
+                                "left": 0
+                            })
+                        } else if (this.doMenuPush() === 'right') {
+                            $('.k-menu-backdrop').css({
+                                "right": 0
+                            })
+                        }
                     }
                 },
                 doMenuPush: function () {
@@ -99,13 +108,13 @@ baonguyenyam.blogspot.com
                 },
                 doMenuSpeed: function () {
                     // Tốc độ chuyển đổi
-                    // Number       => Return number 
+                    // Number       => Return number
                     // Slow, Fast   => Return string
                     return "number" == typeof $sl ? parseInt($sl) : "string" == typeof $sl ? $sl : void 0
                 },
                 doChangeMenu: function () {
                     // Kích thước sẽ thay đổi menu
-                    // Number                         => Return number 
+                    // Number                         => Return number
                     // 'xs', 'sm', 'md', 'lg', 'xl'   => Return number
                     if ("number" == typeof $o) return parseInt($o);
                     if ("string" == typeof $o) {
@@ -116,11 +125,11 @@ baonguyenyam.blogspot.com
                 menuBar: function () {
                     var __speed = this.doMenuSpeed(),
                         __type = this.doMenuType()
-                    $i && 0 < $i.length && $(".k-menu-toggle").html($i);
+                    $i && 0 < $i.length && $(".k-button-toggle").html($i);
                     if ((__type == 3 || __type == 2) && this.doMenuPush()) {
                         $e.addClass('k-menu-push-' + this.doMenuPush())
                     }
-                    $('.k-menu-toggle').on('click', function (event) {
+                    $('.k-button-toggle').on('click', function (event) {
                         event.preventDefault();
                         var el = $(this)
                         var getFather = $(this).attr('k-toggle-for')
@@ -133,66 +142,74 @@ baonguyenyam.blogspot.com
                             switchMenu(getFather, toggle, el)
                             toggle = 1;
                         }
-                    });
 
+                    });
                     var switchMenu = function (getFather, toggle, el) {
                         if (__type == 3 || __type == 2) {
                             if ($p) {
-                                $('.k-menu-backdrop').addClass('active', __speed).bind('click', function () {
-                                    $(this).removeClass('active', __speed)
-                                    $(el).removeClass('active', __speed)
-                                    if ($p === 'right') {
-                                        var n = $(getFather).css("right");
-                                        $(getFather).animate({
-                                            right: "-" + $pw,
-                                        }, {
-                                            duration: __speed,
-                                            complete: function () {}
-                                        })
-                                    } else {
-                                        var n = $(getFather).css("left");
-                                        $(getFather).animate({
-                                            left: "-" + $pw,
-                                        }, {
-                                            duration: __speed,
-                                            complete: function () {}
-                                        })
-                                    }
-                                    $(this).unbind()
-                                })
                                 if ($p === 'right') {
                                     var n = $(getFather).css("right");
                                     if (n != '0px') {
+                                        $(getFather).addClass('k-expand')
                                         $(getFather).animate({
                                             right: "0",
                                         }, {
-                                            duration: __speed,
-                                            complete: function () {}
-                                        })
+                                                duration: __speed,
+                                                complete: function () { }
+                                            })
+                                        $('.k-menu-backdrop').animate({
+                                            right: $pw,
+                                        }, {
+                                                duration: __speed,
+                                                complete: function () { }
+                                            })
                                     } else {
                                         $(getFather).animate({
                                             right: "-" + $pw,
                                         }, {
-                                            duration: __speed,
-                                            complete: function () {}
-                                        })
+                                                duration: __speed,
+                                                complete: function () {
+                                                    $(getFather).removeClass('k-expand')
+                                                }
+                                            })
+                                        $('.k-menu-backdrop').animate({
+                                            right: 0,
+                                        }, {
+                                                duration: __speed,
+                                                complete: function () { }
+                                            })
                                     }
                                 } else {
                                     var n = $(getFather).css("left");
                                     if (n != '0px') {
+                                        $(getFather).addClass('k-expand')
                                         $(getFather).animate({
                                             left: "0",
                                         }, {
-                                            duration: __speed,
-                                            complete: function () {}
-                                        })
+                                                duration: __speed,
+                                                complete: function () { }
+                                            })
+                                        $('.k-menu-backdrop').animate({
+                                            left: $pw,
+                                        }, {
+                                                duration: __speed,
+                                                complete: function () { }
+                                            })
                                     } else {
                                         $(getFather).animate({
                                             left: "-" + $pw,
                                         }, {
-                                            duration: __speed,
-                                            complete: function () {}
-                                        })
+                                                duration: __speed,
+                                                complete: function () {
+                                                    $(getFather).removeClass('k-expand')
+                                                }
+                                            })
+                                        $('.k-menu-backdrop').animate({
+                                            left: 0,
+                                        }, {
+                                                duration: __speed,
+                                                complete: function () { }
+                                            })
                                     }
                                 }
                             } else {
@@ -200,8 +217,6 @@ baonguyenyam.blogspot.com
                             }
                         }
                     }
-
-
                 },
                 doResponsiveMenu: function () {
                     var getchange = 0,
@@ -210,9 +225,7 @@ baonguyenyam.blogspot.com
                         __speed = this.doMenuSpeed();
                     getchange != __change && (getchange = __change);
                     if ((__type == 3 || __type == 2) && $p) {
-                        $('.k-menu-backdrop').removeClass('active', __speed)
                         $e.css({
-                            "display": "block",
                             "position": $pp,
                             "width": $pw
                         })
@@ -239,13 +252,15 @@ baonguyenyam.blogspot.com
                 },
                 makeHorizontalPC: function () {
                     this.doMapBack()
-                    $e.removeClass('k-active').removeAttr('style')
-                    $('.k-menu-bar').hide()
+                    $e.removeClass('k-active-mobile').removeAttr('style').addClass('k-active-pc')
+                    $('.k-menu-bar').removeClass('active')
+                    $('.k-menu-backdrop').removeClass('active')
                 },
                 makeHorizontalMobile: function () {
                     this.doMapTo()
-                    $e.addClass('k-active')
-                    $('.k-menu-bar').show()
+                    $e.addClass('k-active-mobile').removeClass('k-active-pc')
+                    $('.k-menu-bar').addClass('active')
+                    $('.k-menu-backdrop').addClass('active')
                 },
                 doMapTo: function () {
                     $('[k-menu-map-to]').each(function () {
@@ -260,11 +275,22 @@ baonguyenyam.blogspot.com
                         $(getTo).html('')
                         $(this).show()
                     })
+                },
+                doreSetMenuBackDrop: function () {
+                    $('.k-menu-backdrop').each(function () {
+                        $(this).click(function () {
+                            alert(1)
+                            toggle = 0
+                        })
+                    })
                 }
             }
 
+
+
             nguyenApp.menuBar()
             nguyenApp.doBackDrop()
+            nguyenApp.doreSetMenuBackDrop()
             nguyenApp.doResponsiveMenu()
 
             plugin.element.on('click' + '.' + plugin._name, function () {
@@ -361,7 +387,7 @@ baonguyenyam.blogspot.com
         }
         return this.on('click', cb)
     }
-    // Build MENU 
+    // Build MENU
 
     $.fn.kResponsiveMenu = function (options) {
         this.each(function () {
@@ -377,7 +403,7 @@ baonguyenyam.blogspot.com
     $.fn.kResponsiveMenu.defaults = {
         animationSpeed: 'slow', // slow, fast, 200
         resizeWidth: 768,
-        menuType: 'horizontal', // horizontal, vertical, accordion
+        menuType: 'toggle', // horizontal, vertical, toggle
         menuPush: null, // right, left
         menuPushPosition: 'absolute', // fixed
         menuPushWidth: '100%', // px, %, rem

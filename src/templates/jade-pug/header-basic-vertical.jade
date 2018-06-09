@@ -18,8 +18,8 @@ block body
         nav.bg-light
           .k-menu-bar.container
             #logo.mr-auto
-            button.k-menu-toggle.navbar-toggler(k-toggle-for="#demoResAllInOneMenu") MENU
-          #demoResAllInOneMenu.container
+            button.k-button-toggle.navbar-toggler(k-toggle-for="#demoResAllInOneMenu") MENU
+          #demoResAllInOneMenu.container.k-responsive-menu
             .k-logo.navbar-brand(k-menu-map-to="#logo") LOGO
             ul.nav
               li.nav-item
@@ -45,9 +45,9 @@ block body
           &lt;nav class=&quot;bg-light&quot;&gt;
             &lt;div class=&quot;k-menu-bar container&quot;&gt;
               &lt;div id=&quot;logo&quot; class=&quot;mr-auto&quot;&gt;&lt;/div&gt;
-              &lt;button k-toggle-for=&quot;#demoResAllInOneMenu&quot; class=&quot;k-menu-toggle navbar-toggler&quot;&gt;MENU&lt;/button&gt;
+              &lt;button k-toggle-for=&quot;#demoResAllInOneMenu&quot; class=&quot;k-button-toggle navbar-toggler&quot;&gt;MENU&lt;/button&gt;
             &lt;/div&gt;
-            &lt;div id=&quot;demoResAllInOneMenu&quot; class=&quot;container&quot;&gt;
+            &lt;div id=&quot;demoResAllInOneMenu&quot; class=&quot;container k-responsive-menu&quot;&gt;
               &lt;div k-menu-map-to=&quot;#logo&quot; class=&quot;k-logo navbar-brand&quot;&gt;LOGO&lt;/div&gt;
               &lt;ul class=&quot;nav&quot;&gt;
                 &lt;li class=&quot;nav-item&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;nav-link&quot;&gt;About us&lt;/a&gt;&lt;/li&gt;
